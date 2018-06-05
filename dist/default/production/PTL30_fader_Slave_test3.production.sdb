@@ -1,0 +1,653 @@
+[p LITE_MODE AUTOSTATIC PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F18855 ]
+[d frameptr 6 ]
+"109 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/adcc.c
+[e E14254 . `uc
+channel_ANA0 0
+channel_ANA1 1
+channel_ANA2 2
+channel_ANA3 3
+channel_ANA4 4
+channel_ANA5 5
+channel_ANA6 6
+channel_ANA7 7
+channel_ANC0 16
+channel_ANC1 17
+channel_VSS 60
+channel_Temp 61
+channel_DAC1 62
+channel_FVR_buf1 63
+]
+"122 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/i2c1.c
+[e E14254 . `uc
+I2C1_SLAVE_WRITE_REQUEST 0
+I2C1_SLAVE_READ_REQUEST 1
+I2C1_SLAVE_WRITE_COMPLETED 2
+I2C1_SLAVE_READ_COMPLETED 3
+]
+"187
+[e E14268 . `uc
+SLAVE_NORMAL_DATA 0
+SLAVE_DATA_ADDRESS 1
+]
+"164 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\main.c
+[e E14261 . `uc
+channel_ANA0 0
+channel_ANA1 1
+channel_ANA2 2
+channel_ANA3 3
+channel_ANA4 4
+channel_ANA5 5
+channel_ANA6 6
+channel_ANA7 7
+channel_ANC0 16
+channel_ANC1 17
+channel_VSS 60
+channel_Temp 61
+channel_DAC1 62
+channel_FVR_buf1 63
+]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.42\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v1.42\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.42\sources\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.42\sources\pic\eeprom.c
+[v _eecpymem eecpymem `(v  1 e 1 0 ]
+"39
+[v _memcpyee memcpyee `(v  1 e 1 0 ]
+"83 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\main.c
+[v _delay delay `(v  1 e 1 0 ]
+"91
+[v _blinkyLoop blinkyLoop `(v  1 e 1 0 ]
+"129
+[v _main main `(v  1 e 1 0 ]
+"199
+[v _UpdateLEDsFromValue UpdateLEDsFromValue `(v  1 e 1 0 ]
+"259
+[v _UpdateLEDs UpdateLEDs `(v  1 e 1 0 ]
+"62 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/adcc.c
+[v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
+"132
+[v _ADCC_GetSingleConversion ADCC_GetSingleConversion `(ui  1 e 2 0 ]
+"84 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/i2c1.c
+[v _I2C1_Initialize I2C1_Initialize `(v  1 e 1 0 ]
+"107
+[v _I2C1_ISR I2C1_ISR `(v  1 e 1 0 ]
+"171
+[v _I2C1_StatusCallback I2C1_StatusCallback `(v  1 e 1 0 ]
+"51 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/interrupt_manager.c
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
+"83 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+"92
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+"52 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+[s S788 . 1 `uc 1 INTEDG 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"362 C:\Program Files (x86)\Microchip\xc8\v1.42\include\pic16f18855.h
+[u S793 . 1 `S788 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES793  1 e 1 @11 ]
+"589
+[v _TRISA TRISA `VEuc  1 e 1 @17 ]
+"651
+[v _TRISB TRISB `VEuc  1 e 1 @18 ]
+"713
+[v _TRISC TRISC `VEuc  1 e 1 @19 ]
+"775
+[v _LATA LATA `VEuc  1 e 1 @22 ]
+"837
+[v _LATB LATB `VEuc  1 e 1 @23 ]
+"899
+[v _LATC LATC `VEuc  1 e 1 @24 ]
+"1536
+[v _ADRESL ADRESL `VEuc  1 e 1 @140 ]
+"1556
+[v _ADRESH ADRESH `VEuc  1 e 1 @141 ]
+"1570
+[v _ADPREVL ADPREVL `VEuc  1 e 1 @142 ]
+"1640
+[v _ADPREVH ADPREVH `VEuc  1 e 1 @143 ]
+"1717
+[v _ADACCL ADACCL `VEuc  1 e 1 @144 ]
+"1787
+[v _ADACCH ADACCH `VEuc  1 e 1 @145 ]
+"1857
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @147 ]
+[s S147 . 1 `uc 1 ADGO 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 ADFM 1 0 :2:2 
+`uc 1 ADCS 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 ADCONT 1 0 :1:6 
+`uc 1 ADON 1 0 :1:7 
+]
+"1893
+[s S155 . 1 `uc 1 DONE 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 ADFRM 1 0 :2:2 
+]
+[s S159 . 1 `uc 1 nDONE 1 0 :1:0 
+]
+[s S161 . 1 `uc 1 GO 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 ADFM0 1 0 :1:2 
+`uc 1 ADFM1 1 0 :1:3 
+]
+[s S166 . 1 `uc 1 GO_nDONE 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 ADFRM0 1 0 :1:2 
+`uc 1 ADFRM1 1 0 :1:3 
+]
+[u S171 . 1 `S147 1 . 1 0 `S155 1 . 1 0 `S159 1 . 1 0 `S161 1 . 1 0 `S166 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES171  1 e 1 @147 ]
+"1968
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @148 ]
+[s S301 . 1 `uc 1 ADDSEN 1 0 :1:0 
+`uc 1 . 1 0 :4:1 
+`uc 1 ADGPOL 1 0 :1:5 
+`uc 1 ADIPEN 1 0 :1:6 
+`uc 1 ADPPOL 1 0 :1:7 
+]
+"1982
+[u S307 . 1 `S301 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES307  1 e 1 @148 ]
+"2007
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @149 ]
+[s S237 . 1 `uc 1 ADMD 1 0 :3:0 
+`uc 1 ADACLR 1 0 :1:3 
+`uc 1 ADCRS 1 0 :3:4 
+`uc 1 ADPSIS 1 0 :1:7 
+]
+"2029
+[s S242 . 1 `uc 1 ADMD0 1 0 :1:0 
+`uc 1 ADMD1 1 0 :1:1 
+`uc 1 ADMD2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 ADCRS0 1 0 :1:4 
+`uc 1 ADCRS1 1 0 :1:5 
+`uc 1 ADCRS2 1 0 :1:6 
+]
+[u S250 . 1 `S237 1 . 1 0 `S242 1 . 1 0 ]
+[v _ADCON2bits ADCON2bits `VES250  1 e 1 @149 ]
+"2084
+[v _ADCON3 ADCON3 `VEuc  1 e 1 @150 ]
+[s S208 . 1 `uc 1 ADTMD0 1 0 :1:0 
+`uc 1 ADTMD1 1 0 :1:1 
+`uc 1 ADTMD2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 ADCALC0 1 0 :1:4 
+`uc 1 ADCALC1 1 0 :1:5 
+`uc 1 ADCALC2 1 0 :1:6 
+]
+"2105
+[s S216 . 1 `uc 1 ADTMD 1 0 :3:0 
+`uc 1 ADSOI 1 0 :1:3 
+`uc 1 ADCALC 1 0 :3:4 
+]
+[u S220 . 1 `S208 1 . 1 0 `S216 1 . 1 0 ]
+[v _ADCON3bits ADCON3bits `VES220  1 e 1 @150 ]
+"2155
+[v _ADSTAT ADSTAT `VEuc  1 e 1 @151 ]
+[s S269 . 1 `uc 1 ADSTAT 1 0 :3:0 
+`uc 1 ADMACT 1 0 :1:3 
+`uc 1 ADMATH 1 0 :1:4 
+`uc 1 ADLTHR 1 0 :1:5 
+`uc 1 ADUTHR 1 0 :1:6 
+`uc 1 ADAOV 1 0 :1:7 
+]
+"2175
+[s S276 . 1 `uc 1 ADSTAT0 1 0 :1:0 
+`uc 1 ADSTAT1 1 0 :1:1 
+`uc 1 ADSTAT2 1 0 :1:2 
+]
+[u S280 . 1 `S269 1 . 1 0 `S276 1 . 1 0 ]
+[v _ADSTATbits ADSTATbits `VES280  1 e 1 @151 ]
+"2225
+[v _ADCLK ADCLK `VEuc  1 e 1 @152 ]
+"2283
+[v _ADACT ADACT `VEuc  1 e 1 @153 ]
+"2335
+[v _ADREF ADREF `VEuc  1 e 1 @154 ]
+"2376
+[v _ADCAP ADCAP `VEuc  1 e 1 @155 ]
+"2428
+[v _ADPRE ADPRE `VEuc  1 e 1 @156 ]
+"2498
+[v _ADACQ ADACQ `VEuc  1 e 1 @157 ]
+"2568
+[v _ADPCH ADPCH `VEuc  1 e 1 @158 ]
+"2626
+[v _ADCNT ADCNT `VEuc  1 e 1 @268 ]
+"2696
+[v _ADRPT ADRPT `VEuc  1 e 1 @269 ]
+"2773
+[v _ADLTHL ADLTHL `VEuc  1 e 1 @270 ]
+"2843
+[v _ADLTHH ADLTHH `VEuc  1 e 1 @271 ]
+"2920
+[v _ADUTHL ADUTHL `VEuc  1 e 1 @272 ]
+"2990
+[v _ADUTHH ADUTHH `VEuc  1 e 1 @273 ]
+"3067
+[v _ADSTPTL ADSTPTL `VEuc  1 e 1 @274 ]
+"3137
+[v _ADSTPTH ADSTPTH `VEuc  1 e 1 @275 ]
+"3214
+[v _ADFLTRL ADFLTRL `VEuc  1 e 1 @276 ]
+"3284
+[v _ADFLTRH ADFLTRH `VEuc  1 e 1 @277 ]
+"3361
+[v _ADERRL ADERRL `VEuc  1 e 1 @278 ]
+"3431
+[v _ADERRH ADERRH `VEuc  1 e 1 @279 ]
+"4346
+[v _SSP1BUF SSP1BUF `VEuc  1 e 1 @396 ]
+"4366
+[v _SSP1ADD SSP1ADD `VEuc  1 e 1 @397 ]
+"4486
+[v _SSP1MSK SSP1MSK `VEuc  1 e 1 @398 ]
+"4556
+[v _SSP1STAT SSP1STAT `VEuc  1 e 1 @399 ]
+[s S417 . 1 `uc 1 BF 1 0 :1:0 
+`uc 1 UA 1 0 :1:1 
+`uc 1 R_nW 1 0 :1:2 
+`uc 1 S 1 0 :1:3 
+`uc 1 P 1 0 :1:4 
+`uc 1 D_nA 1 0 :1:5 
+`uc 1 CKE 1 0 :1:6 
+`uc 1 SMP 1 0 :1:7 
+]
+"4665
+[s S426 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R_W 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D_A 1 0 :1:5 
+]
+[s S431 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nW 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nA 1 0 :1:5 
+]
+[s S436 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nWRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nADDRESS 1 0 :1:5 
+]
+[s S441 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 READ_WRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 DATA_ADDRESS 1 0 :1:5 
+]
+[s S446 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 I2C_READ 1 0 :1:2 
+`uc 1 I2C_START 1 0 :1:3 
+`uc 1 I2C_STOP 1 0 :1:4 
+`uc 1 I2C_DAT 1 0 :1:5 
+]
+[s S452 . 1 `uc 1 BF1 1 0 :1:0 
+`uc 1 UA1 1 0 :1:1 
+`uc 1 R 1 0 :1:2 
+`uc 1 START 1 0 :1:3 
+`uc 1 STOP 1 0 :1:4 
+`uc 1 D 1 0 :1:5 
+`uc 1 CKE1 1 0 :1:6 
+`uc 1 SMP1 1 0 :1:7 
+]
+[s S461 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 RW 1 0 :1:2 
+`uc 1 START1 1 0 :1:3 
+`uc 1 STOP1 1 0 :1:4 
+`uc 1 DA 1 0 :1:5 
+]
+[s S467 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 RW1 1 0 :1:2 
+`uc 1 I2C_START1 1 0 :1:3 
+`uc 1 I2C_STOP2 1 0 :1:4 
+`uc 1 DA1 1 0 :1:5 
+]
+[s S473 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 I2C_READ1 1 0 :1:2 
+`uc 1 S2 1 0 :1:3 
+`uc 1 P2 1 0 :1:4 
+`uc 1 DATA_ADDRESS1 1 0 :1:5 
+]
+[s S479 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 READ_WRITE1 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D_A1 1 0 :1:5 
+]
+[s S484 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R_W1 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D_nA1 1 0 :1:5 
+]
+[s S489 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R_nW1 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 I2C_DAT1 1 0 :1:5 
+]
+[s S494 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nW2 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nA2 1 0 :1:5 
+]
+[s S499 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nWRITE1 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nADDRESS1 1 0 :1:5 
+]
+[u S504 . 1 `S417 1 . 1 0 `S426 1 . 1 0 `S431 1 . 1 0 `S436 1 . 1 0 `S441 1 . 1 0 `S446 1 . 1 0 `S452 1 . 1 0 `S461 1 . 1 0 `S467 1 . 1 0 `S473 1 . 1 0 `S479 1 . 1 0 `S484 1 . 1 0 `S489 1 . 1 0 `S494 1 . 1 0 `S499 1 . 1 0 ]
+[v _SSP1STATbits SSP1STATbits `VES504  1 e 1 @399 ]
+"4920
+[v _SSP1CON1 SSP1CON1 `VEuc  1 e 1 @400 ]
+[s S695 . 1 `uc 1 SSPM 1 0 :4:0 
+`uc 1 CKP 1 0 :1:4 
+`uc 1 SSPEN 1 0 :1:5 
+`uc 1 SSPOV 1 0 :1:6 
+`uc 1 WCOL 1 0 :1:7 
+]
+"4950
+[s S701 . 1 `uc 1 SSPM0 1 0 :1:0 
+`uc 1 SSPM1 1 0 :1:1 
+`uc 1 SSPM2 1 0 :1:2 
+`uc 1 SSPM3 1 0 :1:3 
+]
+[s S706 . 1 `uc 1 SSPM01 1 0 :1:0 
+`uc 1 SSPM11 1 0 :1:1 
+`uc 1 SSPM21 1 0 :1:2 
+`uc 1 SSPM31 1 0 :1:3 
+`uc 1 CKP1 1 0 :1:4 
+`uc 1 SSPEN1 1 0 :1:5 
+`uc 1 SSPOV1 1 0 :1:6 
+`uc 1 WCOL1 1 0 :1:7 
+]
+[u S715 . 1 `S695 1 . 1 0 `S701 1 . 1 0 `S706 1 . 1 0 ]
+[v _SSP1CON1bits SSP1CON1bits `VES715  1 e 1 @400 ]
+"5040
+[v _SSP1CON2 SSP1CON2 `VEuc  1 e 1 @401 ]
+[s S608 . 1 `uc 1 SEN 1 0 :1:0 
+`uc 1 RSEN 1 0 :1:1 
+`uc 1 PEN 1 0 :1:2 
+`uc 1 RCEN 1 0 :1:3 
+`uc 1 ACKEN 1 0 :1:4 
+`uc 1 ACKDT 1 0 :1:5 
+`uc 1 ACKSTAT 1 0 :1:6 
+`uc 1 GCEN 1 0 :1:7 
+]
+"5087
+[s S617 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 ADMSK 1 0 :5:1 
+]
+[s S620 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 ADMSK1 1 0 :1:1 
+`uc 1 ADMSK2 1 0 :1:2 
+`uc 1 ADMSK3 1 0 :1:3 
+`uc 1 ADMSK4 1 0 :1:4 
+`uc 1 ADMSK5 1 0 :1:5 
+]
+[s S627 . 1 `uc 1 SEN1 1 0 :1:0 
+`uc 1 ADMSK11 1 0 :1:1 
+`uc 1 ADMSK21 1 0 :1:2 
+`uc 1 ADMSK31 1 0 :1:3 
+`uc 1 ACKEN1 1 0 :1:4 
+`uc 1 ACKDT1 1 0 :1:5 
+`uc 1 ACKSTAT1 1 0 :1:6 
+`uc 1 GCEN1 1 0 :1:7 
+]
+[s S636 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 RSEN1 1 0 :1:1 
+`uc 1 PEN1 1 0 :1:2 
+`uc 1 RCEN1 1 0 :1:3 
+`uc 1 ADMSK41 1 0 :1:4 
+`uc 1 ADMSK51 1 0 :1:5 
+]
+[u S643 . 1 `S608 1 . 1 0 `S617 1 . 1 0 `S620 1 . 1 0 `S627 1 . 1 0 `S636 1 . 1 0 ]
+[v _SSP1CON2bits SSP1CON2bits `VES643  1 e 1 @401 ]
+"5227
+[v _SSP1CON3 SSP1CON3 `VEuc  1 e 1 @402 ]
+[s S382 . 1 `uc 1 SSP1IF 1 0 :1:0 
+`uc 1 BCL1IF 1 0 :1:1 
+`uc 1 SSP2IF 1 0 :1:2 
+`uc 1 BCL2IF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+]
+"21249
+[u S389 . 1 `S382 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES389  1 e 1 @1807 ]
+[s S399 . 1 `uc 1 SSP1IE 1 0 :1:0 
+`uc 1 BCL1IE 1 0 :1:1 
+`uc 1 SSP2IE 1 0 :1:2 
+`uc 1 BCL2IE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+]
+"21671
+[u S406 . 1 `S399 1 . 1 0 ]
+[v _PIE3bits PIE3bits `VES406  1 e 1 @1817 ]
+"23324
+[v _OSCCON1 OSCCON1 `VEuc  1 e 1 @2189 ]
+"23464
+[v _OSCCON3 OSCCON3 `VEuc  1 e 1 @2191 ]
+"23561
+[v _OSCEN OSCEN `VEuc  1 e 1 @2193 ]
+"23612
+[v _OSCTUNE OSCTUNE `VEuc  1 e 1 @2194 ]
+"23670
+[v _OSCFRQ OSCFRQ `VEuc  1 e 1 @2195 ]
+"29763
+[v _PPSLOCK PPSLOCK `VEuc  1 e 1 @3727 ]
+[s S37 . 1 `uc 1 PPSLOCKED 1 0 :1:0 
+]
+"29773
+[u S39 . 1 `S37 1 . 1 0 ]
+[v _PPSLOCKbits PPSLOCKbits `VES39  1 e 1 @3727 ]
+[s S64 . 1 `uc 1 SSP1CLKPPS0 1 0 :1:0 
+`uc 1 SSP1CLKPPS1 1 0 :1:1 
+`uc 1 SSP1CLKPPS2 1 0 :1:2 
+`uc 1 SSP1CLKPPS3 1 0 :1:3 
+`uc 1 SSP1CLKPPS4 1 0 :1:4 
+]
+"31392
+[s S70 . 1 `uc 1 SSP1CLKPPS 1 0 :5:0 
+]
+[u S72 . 1 `S64 1 . 1 0 `S70 1 . 1 0 ]
+[v _SSP1CLKPPSbits SSP1CLKPPSbits `VES72  1 e 1 @3781 ]
+[s S44 . 1 `uc 1 SSP1DATPPS0 1 0 :1:0 
+`uc 1 SSP1DATPPS1 1 0 :1:1 
+`uc 1 SSP1DATPPS2 1 0 :1:2 
+`uc 1 SSP1DATPPS3 1 0 :1:3 
+`uc 1 SSP1DATPPS4 1 0 :1:4 
+]
+"31444
+[s S50 . 1 `uc 1 SSP1DATPPS 1 0 :5:0 
+]
+[u S52 . 1 `S44 1 . 1 0 `S50 1 . 1 0 ]
+[v _SSP1DATPPSbits SSP1DATPPSbits `VES52  1 e 1 @3782 ]
+"32741
+[v _RC3PPS RC3PPS `VEuc  1 e 1 @3875 ]
+"32791
+[v _RC4PPS RC4PPS `VEuc  1 e 1 @3876 ]
+"32991
+[v _ANSELA ANSELA `VEuc  1 e 1 @3896 ]
+"33053
+[v _WPUA WPUA `VEuc  1 e 1 @3897 ]
+"33115
+[v _ODCONA ODCONA `VEuc  1 e 1 @3898 ]
+"33611
+[v _ANSELB ANSELB `VEuc  1 e 1 @3907 ]
+"33673
+[v _WPUB WPUB `VEuc  1 e 1 @3908 ]
+"33735
+[v _ODCONB ODCONB `VEuc  1 e 1 @3909 ]
+"34231
+[v _ANSELC ANSELC `VEuc  1 e 1 @3918 ]
+"34293
+[v _WPUC WPUC `VEuc  1 e 1 @3919 ]
+"34355
+[v _ODCONC ODCONC `VEuc  1 e 1 @3920 ]
+"34851
+[v _WPUE WPUE `VEuc  1 e 1 @3941 ]
+"36757
+"36757
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"82 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\main.c
+[v _cMstrClkAdjust cMstrClkAdjust `DCCi  1 e 2 0 ]
+"125
+[v _cMaxFaderCnt cMaxFaderCnt `DCCi  1 e 2 0 ]
+"62 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/i2c1.c
+[v _I2C1_slaveWriteData I2C1_slaveWriteData `VEuc  1 e 1 0 ]
+"64
+[v _iLEDBytesChangedCount iLEDBytesChangedCount `VEi  1 e 2 0 ]
+"65
+[v _MSByteLED MSByteLED `VEuc  1 e 1 0 ]
+"66
+[v _LSByteLED LSByteLED `VEuc  1 e 1 0 ]
+"129 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"132
+[v main@rawFaderValue rawFaderValue `[8]ui  1 a 16 34 ]
+"135
+[v main@byteFaderValue byteFaderValue `[8]uc  1 a 8 52 ]
+"136
+[v main@prevbyteFaderValue prevbyteFaderValue `[8]uc  1 a 8 26 ]
+"137
+[v main@iFaderNum iFaderNum `uc  1 a 1 60 ]
+"134
+[v main@wkFaderValue wkFaderValue `uc  1 a 1 51 ]
+"131
+[v main@I2C_ADDRESS_FADELED0 I2C_ADDRESS_FADELED0 `uc  1 a 1 50 ]
+"198
+} 0
+"91
+[v _blinkyLoop blinkyLoop `(v  1 e 1 0 ]
+{
+"92
+[v blinkyLoop@loopCount loopCount `i  1 a 2 21 ]
+"93
+[v blinkyLoop@delayTime delayTime `i  1 a 2 19 ]
+"91
+[v blinkyLoop@maxLoops maxLoops `i  1 p 2 16 ]
+"117
+} 0
+"83
+[v _delay delay `(v  1 e 1 0 ]
+{
+"84
+[v delay@counter counter `l  1 a 4 12 ]
+"85
+[v delay@adjustedDelaytime adjustedDelaytime `l  1 a 4 8 ]
+"83
+[v delay@delaytime delaytime `i  1 p 2 6 ]
+"89
+} 0
+"15 C:\Program Files (x86)\Microchip\xc8\v1.42\sources\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"199 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\main.c
+[v _UpdateLEDsFromValue UpdateLEDsFromValue `(v  1 e 1 0 ]
+{
+[v UpdateLEDsFromValue@inFaderNum inFaderNum `uc  1 a 1 wreg ]
+"202
+[v UpdateLEDsFromValue@wkBrightFlag wkBrightFlag `uc  1 a 1 3 ]
+"201
+[v UpdateLEDsFromValue@wkOnFlag wkOnFlag `uc  1 a 1 2 ]
+"199
+[v UpdateLEDsFromValue@inFaderNum inFaderNum `uc  1 a 1 wreg ]
+[v UpdateLEDsFromValue@inValue inValue `uc  1 p 1 5 ]
+"201
+[v UpdateLEDsFromValue@inFaderNum inFaderNum `uc  1 a 1 1 ]
+"258
+} 0
+"259
+[v _UpdateLEDs UpdateLEDs `(v  1 e 1 0 ]
+{
+[v UpdateLEDs@inMSByteLED inMSByteLED `uc  1 a 1 wreg ]
+"260
+[v UpdateLEDs@wkByte wkByte `uc  1 a 1 2 ]
+"259
+[v UpdateLEDs@inMSByteLED inMSByteLED `uc  1 a 1 wreg ]
+[v UpdateLEDs@inLSByteLED inLSByteLED `uc  1 p 1 5 ]
+"271
+[v UpdateLEDs@inMSByteLED inMSByteLED `uc  1 a 1 1 ]
+"414
+} 0
+"83 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+{
+"90
+} 0
+"52 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+{
+"95
+[v PIN_MANAGER_Initialize@state state `uc  1 a 1 5 ]
+"111
+} 0
+"92 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/mcc.c
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+{
+"104
+} 0
+"84 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/i2c1.c
+[v _I2C1_Initialize I2C1_Initialize `(v  1 e 1 0 ]
+{
+"105
+} 0
+"62 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/adcc.c
+[v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
+{
+"106
+} 0
+"132
+[v _ADCC_GetSingleConversion ADCC_GetSingleConversion `(ui  1 e 2 0 ]
+{
+[v ADCC_GetSingleConversion@channel channel `E14254  1 a 1 wreg ]
+[v ADCC_GetSingleConversion@channel channel `E14254  1 a 1 wreg ]
+"135
+[v ADCC_GetSingleConversion@channel channel `E14254  1 a 1 5 ]
+"156
+} 0
+"51 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/interrupt_manager.c
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
+{
+"62
+} 0
+"107 C:\Users\OZHall\MPLABXProjects\PTL30_fader_Slave_test3\mcc_generated_files/i2c1.c
+[v _I2C1_ISR I2C1_ISR `(v  1 e 1 0 ]
+{
+"109
+[v I2C1_ISR@i2c_data i2c_data `uc  1 a 1 3 ]
+"147
+} 0
+"171
+[v _I2C1_StatusCallback I2C1_StatusCallback `(v  1 e 1 0 ]
+{
+[v I2C1_StatusCallback@i2c_bus_state i2c_bus_state `E14254  1 a 1 wreg ]
+[v I2C1_StatusCallback@i2c_bus_state i2c_bus_state `E14254  1 a 1 wreg ]
+"174
+[v I2C1_StatusCallback@EEPROM_Buffer EEPROM_Buffer `[128]uc  1 s 128 EEPROM_Buffer ]
+"186
+[v I2C1_StatusCallback@eepromAddress eepromAddress `uc  1 s 1 eepromAddress ]
+"187
+[v I2C1_StatusCallback@slaveWriteType slaveWriteType `uc  1 s 1 slaveWriteType ]
+"171
+[v I2C1_StatusCallback@i2c_bus_state i2c_bus_state `E14254  1 a 1 1 ]
+"247
+} 0
