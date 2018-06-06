@@ -47,7 +47,7 @@
  2017-07-06 ozh get fader input & set LED by the fader value.  This is working (with some delays).
  *              NOTE: this is a great "test program" for the Fader hardware
  2017-07-09 ozh updated to 32MHz clock. ADClock FOSC/64.  2x burst average mode.  good reliable responsive faders
- 
+ 2018-06-05 ozh this version works as a slave to flash all LEDs from Master.  The flash changes tempo with fader0 on the Master!
  todo: formalize the parsing of the PointerByte
  Pointer Byte:
 D7:D4 ? Mode Bits               D3:D0 - Address  Comments
