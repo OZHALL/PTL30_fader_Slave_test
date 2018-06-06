@@ -13288,9 +13288,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;i2c1.c: 96: SSP1MSK = (0x7F << 1);
 "96
 [e = _SSP1MSK -> << -> 127 `i -> 1 `i `uc ]
-[; ;i2c1.c: 98: SSP1ADD = (0x10 << 1);
+[; ;i2c1.c: 98: SSP1ADD = (0x68 << 1);
 "98
-[e = _SSP1ADD -> << -> 16 `i -> 1 `i `uc ]
+[e = _SSP1ADD -> << -> 104 `i -> 1 `i `uc ]
 [; ;i2c1.c: 101: PIR3bits.SSP1IF = 0;
 "101
 [e = . . _PIR3bits 0 0 -> -> 0 `i `uc ]

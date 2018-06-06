@@ -83,7 +83,7 @@ typedef enum
     I2C1_SLAVE_READ_COMPLETED,
 } I2C1_SLAVE_DRIVER_STATUS;
 
-#define I2C1_SLAVE_DEFAULT_ADDRESS          0x10
+#define I2C1_SLAVE_DEFAULT_ADDRESS          0x68
 
 /**
     @Summary

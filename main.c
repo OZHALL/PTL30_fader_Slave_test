@@ -48,6 +48,7 @@
  *              NOTE: this is a great "test program" for the Fader hardware
  2017-07-09 ozh updated to 32MHz clock. ADClock FOSC/64.  2x burst average mode.  good reliable responsive faders
  2018-06-05 ozh this version works as a slave to flash all LEDs from Master.  The flash changes tempo with fader0 on the Master!
+ * 
  todo: formalize the parsing of the PointerByte
  Pointer Byte:
 D7:D4 ? Mode Bits               D3:D0 - Address  Comments
@@ -128,7 +129,8 @@ void UpdateLEDs(uint8_t inMSByteLED,uint8_t inLSByteLED);
 // void MYI2C_Read2LEDBytes(uint8_t slaveDeviceAddress, uint8_t MSBWriteByte,uint8_t LSBWriteByte);
 void main(void)
 {
-    uint8_t I2C_ADDRESS_FADELED0 =  0x10;  // assume only 1 device for now 
+    uint8_t I2C_ADDRESS_FADELED0 =  0x68
+            ;  // assume only 1 device for now 
     adc_result_t rawFaderValue[8];  // cMaxFaderCnt
     int wkInt;
     uint8_t wkFaderValue=0;
@@ -172,7 +174,7 @@ void main(void)
 
             // get value from faders
             for (iFaderNum=0;iFaderNum<cMaxFaderCnt;iFaderNum++){
-                // was getting spurious readings.  Fixed by adjusting ADClock (32MHz, FOSC/64, Burst Avg Mode - 2x)
+                // was getting spurious readings.  Fixed by adjusting ADClock (32MHz, FOSC/128, Burst Avg Mode - 3x)
                 rawFaderValue[iFaderNum]=ADCC_GetSingleConversion(iFaderNum);  // 
                 prevbyteFaderValue[iFaderNum]=byteFaderValue[iFaderNum];
                 byteFaderValue[iFaderNum]=(rawFaderValue[iFaderNum])>>2; // convert 10 bit to 8 bit  

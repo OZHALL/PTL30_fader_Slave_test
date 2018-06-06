@@ -17488,7 +17488,7 @@ SSP1CON3 = 0x00;
 
 SSP1MSK = (0x7F << 1);
 
-SSP1ADD = (0x10 << 1);
+SSP1ADD = (0x68 << 1);
 
 
 PIR3bits.SSP1IF = 0;

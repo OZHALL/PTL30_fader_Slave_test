@@ -17574,7 +17574,7 @@ void SYSTEM_Initialize(void);
 # 83
 void OSCILLATOR_Initialize(void);
 
-# 65 "main.c"
+# 66 "main.c"
 typedef uint16_t adc_result_t;
 
 typedef enum
@@ -17629,10 +17629,10 @@ delay(100);
 return;
 }
 
-# 121
+# 122
 void UpdateLEDsFromValue(uint8_t inFaderNum,uint8_t inValue);
 
-# 125
+# 126
 const int cMaxFaderCnt=8;
 
 void UpdateLEDs(uint8_t inMSByteLED,uint8_t inLSByteLED);
@@ -17653,13 +17653,13 @@ SYSTEM_Initialize();
 
 blinkyLoop(5);
 
-# 149
+# 150
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 163
+# 164
 for (iFaderNum=0;iFaderNum<cMaxFaderCnt;iFaderNum++){
 rawFaderValue[iFaderNum]=ADCC_GetSingleConversion(iFaderNum);
 
@@ -17682,7 +17682,7 @@ UpdateLEDsFromValue(iFaderNum,byteFaderValue[iFaderNum]);
 }
 }
 
-# 190
+# 191
 if (1 < iLEDBytesChangedCount)
 {
 iLEDBytesChangedCount=0;
@@ -17755,7 +17755,7 @@ if(wkBrightFlag) {ODCONC &= 0b01111111;}else{ODCONC |= 0b10000000;}
 void UpdateLEDs(uint8_t inMSByteLED,uint8_t inLSByteLED){
 uint8_t wkByte;
 
-# 271
+# 272
 wkByte=inLSByteLED;
 wkByte &= 0b00000010;
 if(0<wkByte)

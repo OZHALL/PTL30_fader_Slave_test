@@ -46,7 +46,7 @@
 
 #include "i2c1.h"
 
-#define I2C1_SLAVE_ADDRESS 0x10 
+#define I2C1_SLAVE_ADDRESS 0x68 
 #define I2C1_SLAVE_MASK    0x7F
 
 typedef enum
@@ -94,7 +94,7 @@ void I2C1_Initialize(void)
     SSP1CON3 = 0x00;
     // SSPMSK 127; 
     SSP1MSK = (I2C1_SLAVE_MASK << 1);  // adjust UI mask for R/nW bit            
-    // SSPADD 16; 
+    // SSPADD 104; 
     SSP1ADD = (I2C1_SLAVE_ADDRESS << 1);  // adjust UI address for R/nW bit
 
     // clear the slave interrupt flag
