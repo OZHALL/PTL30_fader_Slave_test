@@ -48,6 +48,8 @@
  *              NOTE: this is a great "test program" for the Fader hardware
  2017-07-09 ozh updated to 32MHz clock. ADClock FOSC/64.  2x burst average mode.  good reliable responsive faders
  2018-06-05 ozh this version works as a slave to flash all LEDs from Master.  The flash changes tempo with fader0 on the Master!
+ 2018-06-08 ozh Read ADC (fader) mode is working correctly 
+ *              ( i.e. the PTL30_fader_Slave_test code driven by Matrix Switch Teensy code 5.2.3 )
  * 
  todo: formalize the parsing of the PointerByte
  Pointer Byte:
@@ -58,11 +60,15 @@ D7:D4 ? Mode Bits               D3:D0 - Address  Comments
 
  */
 #include "mcc_generated_files/mcc.h"
-
+#include "mcc_generated_files/i2c1.h"
 
 /* BEGIN
  copied from PLT30_fader_led_test1 
  */
+
+volatile uint8_t byteFaderValue[FADERCOUNT];
+volatile uint8_t prevbyteFaderValue[FADERCOUNT];  
+    
 typedef uint16_t adc_result_t;
 
 typedef enum
@@ -133,9 +139,7 @@ void main(void)
             ;  // assume only 1 device for now 
     adc_result_t rawFaderValue[8];  // cMaxFaderCnt
     int wkInt;
-    uint8_t wkFaderValue=0;
-    uint8_t byteFaderValue[8];
-    uint8_t prevbyteFaderValue[8];   
+    uint8_t wkFaderValue=0; 
     uint8_t iFaderNum=0;
     
     iLEDBytesChangedCount=0;

@@ -17453,13 +17453,18 @@ I2C1_SLAVE_WRITE_COMPLETED,
 I2C1_SLAVE_READ_COMPLETED,
 } I2C1_SLAVE_DRIVER_STATUS;
 
-# 113
+# 91
+extern volatile uint8_t byteFaderValue[8];
+extern volatile uint8_t prevbyteFaderValue[8];
+extern volatile bool bFaderTakeoverFlag[8];
+
+# 119
 void I2C1_Initialize(void);
 
-# 133
+# 139
 void I2C1_ISR ( void );
 
-# 140
+# 146
 extern volatile uint8_t I2C1_slaveWriteData;
 extern volatile int iLEDBytesChangedCount;
 extern volatile uint8_t MSByteLED;

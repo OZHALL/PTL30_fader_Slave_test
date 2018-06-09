@@ -3,7 +3,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
 "83 mcc_generated_files/mcc.h
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 0 ef ]
-"113 mcc_generated_files/i2c1.h
+"119 mcc_generated_files/i2c1.h
 [v _I2C1_Initialize `(v ~T0 @X0 0 ef ]
 "139 mcc_generated_files/adcc.h
 [v _ADCC_Initialize `(v ~T0 @X0 0 ef ]
@@ -13183,12 +13183,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;i2c1.h: 82: I2C1_SLAVE_WRITE_COMPLETED,
 [; ;i2c1.h: 83: I2C1_SLAVE_READ_COMPLETED,
 [; ;i2c1.h: 84: } I2C1_SLAVE_DRIVER_STATUS;
-[; ;i2c1.h: 113: void I2C1_Initialize(void);
-[; ;i2c1.h: 133: void I2C1_ISR ( void );
-[; ;i2c1.h: 140: extern volatile uint8_t I2C1_slaveWriteData;
-[; ;i2c1.h: 141: extern volatile int iLEDBytesChangedCount;
-[; ;i2c1.h: 142: extern volatile uint8_t MSByteLED;
-[; ;i2c1.h: 143: extern volatile uint8_t LSByteLED;
+[; ;i2c1.h: 91: extern volatile uint8_t byteFaderValue[8];
+[; ;i2c1.h: 92: extern volatile uint8_t prevbyteFaderValue[8];
+[; ;i2c1.h: 93: extern volatile bool bFaderTakeoverFlag[8];
+[; ;i2c1.h: 119: void I2C1_Initialize(void);
+[; ;i2c1.h: 139: void I2C1_ISR ( void );
+[; ;i2c1.h: 146: extern volatile uint8_t I2C1_slaveWriteData;
+[; ;i2c1.h: 147: extern volatile int iLEDBytesChangedCount;
+[; ;i2c1.h: 148: extern volatile uint8_t MSByteLED;
+[; ;i2c1.h: 149: extern volatile uint8_t LSByteLED;
 [; ;adcc.h: 71: typedef uint16_t adc_result_t;
 [; ;adcc.h: 88: typedef enum
 [; ;adcc.h: 89: {

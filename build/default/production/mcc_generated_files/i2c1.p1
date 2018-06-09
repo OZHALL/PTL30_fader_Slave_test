@@ -119,8 +119,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 "4950
 [v _SSP1CON1bits `VS232 ~T0 @X0 0 e@400 ]
 "188 mcc_generated_files/i2c1.c
-[c E14274 0 1 .. ]
-[n E14274 . SLAVE_NORMAL_DATA SLAVE_DATA_ADDRESS  ]
+[c E14277 0 1 .. ]
+[n E14277 . SLAVE_NORMAL_DATA SLAVE_DATA_ADDRESS  ]
+"91 mcc_generated_files/i2c1.h
+[v _byteFaderValue `Vuc ~T0 @X0 -> 0 `x e ]
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -13238,12 +13240,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;i2c1.h: 82: I2C1_SLAVE_WRITE_COMPLETED,
 [; ;i2c1.h: 83: I2C1_SLAVE_READ_COMPLETED,
 [; ;i2c1.h: 84: } I2C1_SLAVE_DRIVER_STATUS;
-[; ;i2c1.h: 113: void I2C1_Initialize(void);
-[; ;i2c1.h: 133: void I2C1_ISR ( void );
-[; ;i2c1.h: 140: extern volatile uint8_t I2C1_slaveWriteData;
-[; ;i2c1.h: 141: extern volatile int iLEDBytesChangedCount;
-[; ;i2c1.h: 142: extern volatile uint8_t MSByteLED;
-[; ;i2c1.h: 143: extern volatile uint8_t LSByteLED;
+[; ;i2c1.h: 91: extern volatile uint8_t byteFaderValue[8];
+[; ;i2c1.h: 92: extern volatile uint8_t prevbyteFaderValue[8];
+[; ;i2c1.h: 93: extern volatile bool bFaderTakeoverFlag[8];
+[; ;i2c1.h: 119: void I2C1_Initialize(void);
+[; ;i2c1.h: 139: void I2C1_ISR ( void );
+[; ;i2c1.h: 146: extern volatile uint8_t I2C1_slaveWriteData;
+[; ;i2c1.h: 147: extern volatile int iLEDBytesChangedCount;
+[; ;i2c1.h: 148: extern volatile uint8_t MSByteLED;
+[; ;i2c1.h: 149: extern volatile uint8_t LSByteLED;
 [; ;i2c1.c: 52: typedef enum
 [; ;i2c1.c: 53: {
 [; ;i2c1.c: 54: SLAVE_NORMAL_DATA,
@@ -13405,8 +13410,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "172
 [f ]
 "174
-[v F14284 `uc ~T0 @X0 -> 0 `x s EEPROM_Buffer ]
-[i F14284
+[v F14287 `uc ~T0 @X0 -> 0 `x s EEPROM_Buffer ]
+[i F14287
 :U ..
 "176
 -> -> 0 `i `uc
@@ -13547,33 +13552,33 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 "186
-[v F14285 `uc ~T0 @X0 1 s eepromAddress ]
-[i F14285
--> -> 0 `i `uc
-]
-"187
-[v F14286 `uc ~T0 @X0 1 s faderNumber ]
-[i F14286
--> -> 0 `i `uc
-]
-"188
-[v F14287 `uc ~T0 @X0 1 s slaveWriteType ]
-[i F14287
--> . `E14274 0 `uc
-]
-"196
-[v F14288 `Cuc ~T0 @X0 1 s cModeConfig ]
+[v F14288 `uc ~T0 @X0 1 s eepromAddress ]
 [i F14288
 -> -> 0 `i `uc
 ]
-"197
-[v F14289 `Cuc ~T0 @X0 1 s cModeWriteLED ]
+"187
+[v F14289 `uc ~T0 @X0 1 s faderNumber ]
 [i F14289
+-> -> 0 `i `uc
+]
+"188
+[v F14290 `uc ~T0 @X0 1 s slaveWriteType ]
+[i F14290
+-> . `E14277 0 `uc
+]
+"196
+[v F14291 `Cuc ~T0 @X0 1 s cModeConfig ]
+[i F14291
+-> -> 0 `i `uc
+]
+"197
+[v F14292 `Cuc ~T0 @X0 1 s cModeWriteLED ]
+[i F14292
 -> -> 16 `i `uc
 ]
 "198
-[v F14290 `Cuc ~T0 @X0 1 s cModeReadADC ]
-[i F14290
+[v F14293 `Cuc ~T0 @X0 1 s cModeReadADC ]
+[i F14293
 -> -> 32 `i `uc
 ]
 [; ;i2c1.c: 174: static uint8_t EEPROM_Buffer[] =
@@ -13604,7 +13609,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 1574 ]
 [; ;i2c1.c: 204: slaveWriteType = SLAVE_DATA_ADDRESS;
 "204
-[e = F14287 -> . `E14274 1 `uc ]
+[e = F14290 -> . `E14277 1 `uc ]
 [; ;i2c1.c: 205: break;
 "205
 [e $U 1572  ]
@@ -13633,7 +13638,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _wkPB -> -> && != -> _inPointerByte `i -> -> -> 0 `i `uc `i != -> 240 `i -> 0 `i `i `uc ]
 [; ;i2c1.c: 221: if(wkPB==cModeWriteLED)
 "221
-[e $ ! == -> _wkPB `i -> F14289 `i 1579  ]
+[e $ ! == -> _wkPB `i -> F14292 `i 1579  ]
 [; ;i2c1.c: 222: iLEDBytesChangedCount=0;
 "222
 [e = _iLEDBytesChangedCount -> 0 `i ]
@@ -13687,48 +13692,42 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 1576  ]
 "210
 [e :U 1577 ]
-[e [\ F14287 , $ -> . `E14274 1 `uc 1578
- , $ -> . `E14274 0 `uc 1580
+[e [\ F14290 , $ -> . `E14277 1 `uc 1578
+ , $ -> . `E14277 0 `uc 1580
  1581 ]
 "248
 [e :U 1576 ]
 [; ;i2c1.c: 250: slaveWriteType = SLAVE_NORMAL_DATA;
 "250
-[e = F14287 -> . `E14274 0 `uc ]
+[e = F14290 -> . `E14277 0 `uc ]
 [; ;i2c1.c: 251: break;
 "251
 [e $U 1572  ]
 [; ;i2c1.c: 253: case I2C1_SLAVE_READ_REQUEST:
 "253
 [e :U 1584 ]
-[; ;i2c1.c: 255: SSP1BUF = EEPROM_Buffer[eepromAddress++];
-"255
-[e = _SSP1BUF *U + &U F14284 * -> ++ F14285 -> -> 1 `i `uc `ux -> -> # *U &U F14284 `ui `ux ]
-[; ;i2c1.c: 256: if(sizeof(EEPROM_Buffer) <= eepromAddress)
-"256
-[e $ ! <= -> # F14284 `ui -> F14285 `ui 1585  ]
-[; ;i2c1.c: 257: {
-"257
+[; ;i2c1.c: 265: SSP1BUF = byteFaderValue[faderNumber++];
+"265
+[e = _SSP1BUF *U + &U _byteFaderValue * -> ++ F14289 -> -> 1 `i `uc `ux -> -> # *U &U _byteFaderValue `ui `ux ]
+[; ;i2c1.c: 266: if(7<faderNumber) { faderNumber=0;}
+"266
+[e $ ! < -> 7 `i -> F14289 `i 1585  ]
 {
-[; ;i2c1.c: 258: eepromAddress = 0;
-"258
-[e = F14285 -> -> 0 `i `uc ]
-"259
+[e = F14289 -> -> 0 `i `uc ]
 }
 [e :U 1585 ]
-[; ;i2c1.c: 259: }
-[; ;i2c1.c: 261: break;
-"261
+[; ;i2c1.c: 268: break;
+"268
 [e $U 1572  ]
-[; ;i2c1.c: 263: case I2C1_SLAVE_READ_COMPLETED:
-"263
+[; ;i2c1.c: 270: case I2C1_SLAVE_READ_COMPLETED:
+"270
 [e :U 1586 ]
-[; ;i2c1.c: 264: default:;
-"264
+[; ;i2c1.c: 271: default:;
+"271
 [e :U 1587 ]
-"266
+"273
 }
-[; ;i2c1.c: 266: }
+[; ;i2c1.c: 273: }
 [e $U 1572  ]
 "200
 [e :U 1573 ]
@@ -13737,9 +13736,9 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ . `E14260 1 1584
  , $ . `E14260 3 1586
  1587 ]
-"266
+"273
 [e :U 1572 ]
-[; ;i2c1.c: 268: }
-"268
+[; ;i2c1.c: 275: }
+"275
 [e :UE 1571 ]
 }

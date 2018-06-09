@@ -252,12 +252,19 @@ void I2C1_StatusCallback(I2C1_SLAVE_DRIVER_STATUS i2c_bus_state)
 
         case I2C1_SLAVE_READ_REQUEST:
             // EEPROM sample code
+            /*
             SSP1BUF = EEPROM_Buffer[eepromAddress++];// load byte to send
             if(sizeof(EEPROM_Buffer) <= eepromAddress)
             {
                 eepromAddress = 0;    // wrap to start of eeprom page
             }
+            */
             // end EEPROM sample code
+            
+            /* ozh send back the faders*/
+            SSP1BUF = byteFaderValue[faderNumber++];
+            if(7<faderNumber) { faderNumber=0;}
+            
             break;
 
         case I2C1_SLAVE_READ_COMPLETED:

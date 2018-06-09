@@ -85,6 +85,12 @@ typedef enum
 
 #define I2C1_SLAVE_DEFAULT_ADDRESS          0x68
 
+// todo: change this in Main.c and here.
+// this define is duplicated Main.c and i2c1.h
+#define FADERCOUNT 8
+extern volatile uint8_t byteFaderValue[FADERCOUNT]; // see main.c
+extern volatile uint8_t prevbyteFaderValue[FADERCOUNT]; 
+extern volatile bool bFaderTakeoverFlag[FADERCOUNT];
 /**
     @Summary
         Initializes and enables the i2c slave instance : 1

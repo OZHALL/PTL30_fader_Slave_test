@@ -8,7 +8,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "899
 [v _LATC `Vuc ~T0 @X0 0 e@24 ]
 [p mainexit ]
-"141 mcc_generated_files/i2c1.h
+"147 mcc_generated_files/i2c1.h
 [v _iLEDBytesChangedCount `Vi ~T0 @X0 0 e ]
 "70 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
@@ -20,18 +20,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S25 . . ]
 "362
 [v _INTCONbits `VS25 ~T0 @X0 0 e@11 ]
-"165 main.c
-[c E14282 0 1 2 3 4 5 6 7 16 17 60 61 62 63 .. ]
-[n E14282 . channel_ANA0 channel_ANA1 channel_ANA2 channel_ANA3 channel_ANA4 channel_ANA5 channel_ANA6 channel_ANA7 channel_ANC0 channel_ANC1 channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
+"170 main.c
+[c E14285 0 1 2 3 4 5 6 7 16 17 60 61 62 63 .. ]
+[n E14285 . channel_ANA0 channel_ANA1 channel_ANA2 channel_ANA3 channel_ANA4 channel_ANA5 channel_ANA6 channel_ANA7 channel_ANC0 channel_ANC1 channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "261 mcc_generated_files/adcc.h
-[v _ADCC_GetSingleConversion `(ui ~T0 @X0 0 ef1`E14282 ]
-"122 main.c
+[v _ADCC_GetSingleConversion `(ui ~T0 @X0 0 ef1`E14285 ]
+"128 main.c
 [v _UpdateLEDsFromValue `(v ~T0 @X0 0 ef2`uc`uc ]
-"128
+"134
 [v _UpdateLEDs `(v ~T0 @X0 0 ef2`uc`uc ]
-"142 mcc_generated_files/i2c1.h
+"148 mcc_generated_files/i2c1.h
 [v _MSByteLED `Vuc ~T0 @X0 0 e ]
-"143
+"149
 [v _LSByteLED `Vuc ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -13153,12 +13153,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;i2c1.h: 82: I2C1_SLAVE_WRITE_COMPLETED,
 [; ;i2c1.h: 83: I2C1_SLAVE_READ_COMPLETED,
 [; ;i2c1.h: 84: } I2C1_SLAVE_DRIVER_STATUS;
-[; ;i2c1.h: 113: void I2C1_Initialize(void);
-[; ;i2c1.h: 133: void I2C1_ISR ( void );
-[; ;i2c1.h: 140: extern volatile uint8_t I2C1_slaveWriteData;
-[; ;i2c1.h: 141: extern volatile int iLEDBytesChangedCount;
-[; ;i2c1.h: 142: extern volatile uint8_t MSByteLED;
-[; ;i2c1.h: 143: extern volatile uint8_t LSByteLED;
+[; ;i2c1.h: 91: extern volatile uint8_t byteFaderValue[8];
+[; ;i2c1.h: 92: extern volatile uint8_t prevbyteFaderValue[8];
+[; ;i2c1.h: 93: extern volatile bool bFaderTakeoverFlag[8];
+[; ;i2c1.h: 119: void I2C1_Initialize(void);
+[; ;i2c1.h: 139: void I2C1_ISR ( void );
+[; ;i2c1.h: 146: extern volatile uint8_t I2C1_slaveWriteData;
+[; ;i2c1.h: 147: extern volatile int iLEDBytesChangedCount;
+[; ;i2c1.h: 148: extern volatile uint8_t MSByteLED;
+[; ;i2c1.h: 149: extern volatile uint8_t LSByteLED;
 [; ;adcc.h: 71: typedef uint16_t adc_result_t;
 [; ;adcc.h: 88: typedef enum
 [; ;adcc.h: 89: {
@@ -13206,46 +13209,52 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 775: uint8_t ADCC_GetConversionStageStatus(void);
 [; ;mcc.h: 70: void SYSTEM_Initialize(void);
 [; ;mcc.h: 83: void OSCILLATOR_Initialize(void);
-[; ;main.c: 66: typedef uint16_t adc_result_t;
-[; ;main.c: 68: typedef enum
-[; ;main.c: 69: {
-[; ;main.c: 70: FADER0 = 0x0,
-[; ;main.c: 71: FADER1 = 0x1,
-[; ;main.c: 72: FADER2 = 0x2,
-[; ;main.c: 73: FADER3 = 0x3,
-[; ;main.c: 74: FADER4 = 0x4,
-[; ;main.c: 75: POT = 0x4,
-[; ;main.c: 76: FADER5 = 0x5,
-[; ;main.c: 77: FADER6 = 0x6,
-[; ;main.c: 78: FADER7 = 0x7,
-[; ;main.c: 79: } adcc_channel_t;
-[; ;main.c: 81: void delay(int);
-"83 main.c
+"69 main.c
+[v _byteFaderValue `Vuc ~T0 @X0 -> 8 `i e ]
+[; ;main.c: 69: volatile uint8_t byteFaderValue[8];
+"70
+[v _prevbyteFaderValue `Vuc ~T0 @X0 -> 8 `i e ]
+[; ;main.c: 70: volatile uint8_t prevbyteFaderValue[8];
+[; ;main.c: 72: typedef uint16_t adc_result_t;
+[; ;main.c: 74: typedef enum
+[; ;main.c: 75: {
+[; ;main.c: 76: FADER0 = 0x0,
+[; ;main.c: 77: FADER1 = 0x1,
+[; ;main.c: 78: FADER2 = 0x2,
+[; ;main.c: 79: FADER3 = 0x3,
+[; ;main.c: 80: FADER4 = 0x4,
+[; ;main.c: 81: POT = 0x4,
+[; ;main.c: 82: FADER5 = 0x5,
+[; ;main.c: 83: FADER6 = 0x6,
+[; ;main.c: 84: FADER7 = 0x7,
+[; ;main.c: 85: } adcc_channel_t;
+[; ;main.c: 87: void delay(int);
+"89
 [v _cMstrClkAdjust `Ci ~T0 @X0 1 e ]
 [i _cMstrClkAdjust
 -> 32 `i
 ]
-[; ;main.c: 83: const int cMstrClkAdjust = 32;
-"84
+[; ;main.c: 89: const int cMstrClkAdjust = 32;
+"90
 [v _delay `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 84: void delay(int delaytime) {
+[; ;main.c: 90: void delay(int delaytime) {
 [e :U _delay ]
 [v _delaytime `i ~T0 @X0 1 r1 ]
 [f ]
-"85
+"91
 [v _counter `l ~T0 @X0 1 a ]
-[; ;main.c: 85: long counter = 0;
+[; ;main.c: 91: long counter = 0;
 [e = _counter -> -> 0 `i `l ]
-"86
+"92
 [v _adjustedDelaytime `l ~T0 @X0 1 a ]
-[; ;main.c: 86: long adjustedDelaytime=delaytime*cMstrClkAdjust;
+[; ;main.c: 92: long adjustedDelaytime=delaytime*cMstrClkAdjust;
 [e = _adjustedDelaytime -> * _delaytime _cMstrClkAdjust `l ]
-[; ;main.c: 87: if (0<delaytime)
-"87
+[; ;main.c: 93: if (0<delaytime)
+"93
 [e $ ! < -> 0 `i _delaytime 1564  ]
-[; ;main.c: 88: for (counter = 0; counter<adjustedDelaytime; counter++);
-"88
+[; ;main.c: 94: for (counter = 0; counter<adjustedDelaytime; counter++);
+"94
 {
 [e = _counter -> -> 0 `i `l ]
 [e $U 1568  ]
@@ -13256,276 +13265,272 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 1566 ]
 }
 [e :U 1564 ]
-[; ;main.c: 90: }
-"90
+[; ;main.c: 96: }
+"96
 [e :UE 1563 ]
 }
-"92
+"98
 [v _blinkyLoop `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 92: void blinkyLoop (int maxLoops){
+[; ;main.c: 98: void blinkyLoop (int maxLoops){
 [e :U _blinkyLoop ]
 [v _maxLoops `i ~T0 @X0 1 r1 ]
 [f ]
-"93
+"99
 [v _loopCount `i ~T0 @X0 1 a ]
-[; ;main.c: 93: int loopCount=maxLoops;
+[; ;main.c: 99: int loopCount=maxLoops;
 [e = _loopCount _maxLoops ]
-"94
+"100
 [v _delayTime `i ~T0 @X0 1 a ]
-[; ;main.c: 94: int delayTime;
-[; ;main.c: 96: ODCONB &= 0xE0;
-"96
+[; ;main.c: 100: int delayTime;
+[; ;main.c: 102: ODCONB &= 0xE0;
+"102
 [e =& _ODCONB -> -> 224 `i `uc ]
-[; ;main.c: 97: ODCONC &= 0x1F;
-"97
+[; ;main.c: 103: ODCONC &= 0x1F;
+"103
 [e =& _ODCONC -> -> 31 `i `uc ]
-[; ;main.c: 98: while(loopCount>0){
-"98
+[; ;main.c: 104: while(loopCount>0){
+"104
 [e $U 1570  ]
 [e :U 1571 ]
 {
-[; ;main.c: 99: delayTime=loopCount*400;
-"99
-[e = _delayTime * _loopCount -> 400 `i ]
-[; ;main.c: 102: LATB |= 0b00011111;
-"102
-[e =| _LATB -> -> 31 `i `uc ]
-[; ;main.c: 103: LATC |= 0b11100000;
-"103
-[e =| _LATC -> -> 224 `i `uc ]
-[; ;main.c: 105: delay(delayTime);
+[; ;main.c: 105: delayTime=loopCount*400;
 "105
-[e ( _delay (1 _delayTime ]
-[; ;main.c: 107: LATB &= 0b11100000;
-"107
-[e =& _LATB -> -> 224 `i `uc ]
-[; ;main.c: 108: LATC &= 0b00011111;
+[e = _delayTime * _loopCount -> 400 `i ]
+[; ;main.c: 108: LATB |= 0b00011111;
 "108
-[e =& _LATC -> -> 31 `i `uc ]
-[; ;main.c: 110: delay(delayTime);
-"110
+[e =| _LATB -> -> 31 `i `uc ]
+[; ;main.c: 109: LATC |= 0b11100000;
+"109
+[e =| _LATC -> -> 224 `i `uc ]
+[; ;main.c: 111: delay(delayTime);
+"111
 [e ( _delay (1 _delayTime ]
-[; ;main.c: 112: loopCount--;
-"112
-[e -- _loopCount -> 1 `i ]
+[; ;main.c: 113: LATB &= 0b11100000;
 "113
+[e =& _LATB -> -> 224 `i `uc ]
+[; ;main.c: 114: LATC &= 0b00011111;
+"114
+[e =& _LATC -> -> 31 `i `uc ]
+[; ;main.c: 116: delay(delayTime);
+"116
+[e ( _delay (1 _delayTime ]
+[; ;main.c: 118: loopCount--;
+"118
+[e -- _loopCount -> 1 `i ]
+"119
 }
 [e :U 1570 ]
-"98
+"104
 [e $ > _loopCount -> 0 `i 1571  ]
 [e :U 1572 ]
-[; ;main.c: 113: }
-[; ;main.c: 114: LATB |= 0b00011111;
-"114
+[; ;main.c: 119: }
+[; ;main.c: 120: LATB |= 0b00011111;
+"120
 [e =| _LATB -> -> 31 `i `uc ]
-[; ;main.c: 115: LATC |= 0b11100000;
-"115
+[; ;main.c: 121: LATC |= 0b11100000;
+"121
 [e =| _LATC -> -> 224 `i `uc ]
-[; ;main.c: 116: delay(100);
-"116
+[; ;main.c: 122: delay(100);
+"122
 [e ( _delay (1 -> 100 `i ]
-[; ;main.c: 117: return;
-"117
+[; ;main.c: 123: return;
+"123
 [e $UE 1569  ]
-[; ;main.c: 118: }
-"118
+[; ;main.c: 124: }
+"124
 [e :UE 1569 ]
 }
-[; ;main.c: 122: void UpdateLEDsFromValue(uint8_t inFaderNum,uint8_t inValue);
-"126
+[; ;main.c: 128: void UpdateLEDsFromValue(uint8_t inFaderNum,uint8_t inValue);
+"132
 [v _cMaxFaderCnt `Ci ~T0 @X0 1 e ]
 [i _cMaxFaderCnt
 -> 8 `i
 ]
-[; ;main.c: 126: const int cMaxFaderCnt=8;
-[; ;main.c: 128: void UpdateLEDs(uint8_t inMSByteLED,uint8_t inLSByteLED);
+[; ;main.c: 132: const int cMaxFaderCnt=8;
+[; ;main.c: 134: void UpdateLEDs(uint8_t inMSByteLED,uint8_t inLSByteLED);
 [v $root$_main `(v ~T0 @X0 0 e ]
-"130
+"136
 [v _main `(v ~T0 @X0 1 ef ]
-"131
+"137
 {
-[; ;main.c: 130: void main(void)
-[; ;main.c: 131: {
+[; ;main.c: 136: void main(void)
+[; ;main.c: 137: {
 [e :U _main ]
 [f ]
-"132
-[v _I2C_ADDRESS_FADELED0 `uc ~T0 @X0 1 a ]
-[; ;main.c: 132: uint8_t I2C_ADDRESS_FADELED0 = 0x10;
-[e = _I2C_ADDRESS_FADELED0 -> -> 16 `i `uc ]
-"133
-[v _rawFaderValue `ui ~T0 @X0 -> 8 `i a ]
-"134
-[v _wkInt `i ~T0 @X0 1 a ]
-"135
-[v _wkFaderValue `uc ~T0 @X0 1 a ]
-[; ;main.c: 133: adc_result_t rawFaderValue[8];
-[; ;main.c: 134: int wkInt;
-[; ;main.c: 135: uint8_t wkFaderValue=0;
-[e = _wkFaderValue -> -> 0 `i `uc ]
-"136
-[v _byteFaderValue `uc ~T0 @X0 -> 8 `i a ]
-"137
-[v _prevbyteFaderValue `uc ~T0 @X0 -> 8 `i a ]
 "138
-[v _iFaderNum `uc ~T0 @X0 1 a ]
-[; ;main.c: 136: uint8_t byteFaderValue[8];
-[; ;main.c: 137: uint8_t prevbyteFaderValue[8];
-[; ;main.c: 138: uint8_t iFaderNum=0;
-[e = _iFaderNum -> -> 0 `i `uc ]
-[; ;main.c: 140: iLEDBytesChangedCount=0;
+[v _I2C_ADDRESS_FADELED0 `uc ~T0 @X0 1 a ]
+[; ;main.c: 138: uint8_t I2C_ADDRESS_FADELED0 = 0x68
+[; ;main.c: 139: ;
+"139
+[e = _I2C_ADDRESS_FADELED0 -> -> 104 `i `uc ]
 "140
-[e = _iLEDBytesChangedCount -> 0 `i ]
-[; ;main.c: 142: SYSTEM_Initialize();
+[v _rawFaderValue `ui ~T0 @X0 -> 8 `i a ]
+"141
+[v _wkInt `i ~T0 @X0 1 a ]
 "142
+[v _wkFaderValue `uc ~T0 @X0 1 a ]
+[; ;main.c: 140: adc_result_t rawFaderValue[8];
+[; ;main.c: 141: int wkInt;
+[; ;main.c: 142: uint8_t wkFaderValue=0;
+[e = _wkFaderValue -> -> 0 `i `uc ]
+"143
+[v _iFaderNum `uc ~T0 @X0 1 a ]
+[; ;main.c: 143: uint8_t iFaderNum=0;
+[e = _iFaderNum -> -> 0 `i `uc ]
+[; ;main.c: 145: iLEDBytesChangedCount=0;
+"145
+[e = _iLEDBytesChangedCount -> 0 `i ]
+[; ;main.c: 147: SYSTEM_Initialize();
+"147
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 144: blinkyLoop(5);
-"144
+[; ;main.c: 149: blinkyLoop(5);
+"149
 [e ( _blinkyLoop (1 -> 5 `i ]
-[; ;main.c: 150: (INTCONbits.GIE = 1);
-"150
+[; ;main.c: 155: (INTCONbits.GIE = 1);
+"155
 [e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 153: (INTCONbits.PEIE = 1);
-"153
+[; ;main.c: 158: (INTCONbits.PEIE = 1);
+"158
 [e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 164: for (iFaderNum=0;iFaderNum<cMaxFaderCnt;iFaderNum++){
-"164
+[; ;main.c: 169: for (iFaderNum=0;iFaderNum<cMaxFaderCnt;iFaderNum++){
+"169
 {
 [e = _iFaderNum -> -> 0 `i `uc ]
 [e $ < -> _iFaderNum `i _cMaxFaderCnt 1574  ]
 [e $U 1575  ]
 [e :U 1574 ]
 {
-[; ;main.c: 165: rawFaderValue[iFaderNum]=ADCC_GetSingleConversion(iFaderNum);
-"165
-[e = *U + &U _rawFaderValue * -> _iFaderNum `ux -> -> # *U &U _rawFaderValue `ui `ux ( _ADCC_GetSingleConversion (1 -> _iFaderNum `E14282 ]
-[; ;main.c: 167: byteFaderValue[iFaderNum]=(rawFaderValue[iFaderNum]>>2)&0xFF;
-"167
+[; ;main.c: 170: rawFaderValue[iFaderNum]=ADCC_GetSingleConversion(iFaderNum);
+"170
+[e = *U + &U _rawFaderValue * -> _iFaderNum `ux -> -> # *U &U _rawFaderValue `ui `ux ( _ADCC_GetSingleConversion (1 -> _iFaderNum `E14285 ]
+[; ;main.c: 172: byteFaderValue[iFaderNum]=(rawFaderValue[iFaderNum]>>2)&0xFF;
+"172
 [e = *U + &U _byteFaderValue * -> _iFaderNum `ux -> -> # *U &U _byteFaderValue `ui `ux -> & >> *U + &U _rawFaderValue * -> _iFaderNum `ux -> -> # *U &U _rawFaderValue `ui `ux -> 2 `i -> -> 255 `i `ui `uc ]
-"168
+"173
 }
-"164
+"169
 [e ++ _iFaderNum -> -> 1 `i `uc ]
 [e $ < -> _iFaderNum `i _cMaxFaderCnt 1574  ]
 [e :U 1575 ]
-"168
+"173
 }
-[; ;main.c: 168: }
-[; ;main.c: 172: while (1) {
-"172
+[; ;main.c: 173: }
+[; ;main.c: 177: while (1) {
+"177
 [e :U 1578 ]
 {
-[; ;main.c: 175: for (iFaderNum=0;iFaderNum<cMaxFaderCnt;iFaderNum++){
-"175
+[; ;main.c: 180: for (iFaderNum=0;iFaderNum<cMaxFaderCnt;iFaderNum++){
+"180
 {
 [e = _iFaderNum -> -> 0 `i `uc ]
 [e $ < -> _iFaderNum `i _cMaxFaderCnt 1580  ]
 [e $U 1581  ]
 [e :U 1580 ]
 {
-[; ;main.c: 177: rawFaderValue[iFaderNum]=ADCC_GetSingleConversion(iFaderNum);
-"177
-[e = *U + &U _rawFaderValue * -> _iFaderNum `ux -> -> # *U &U _rawFaderValue `ui `ux ( _ADCC_GetSingleConversion (1 -> _iFaderNum `E14282 ]
-[; ;main.c: 178: prevbyteFaderValue[iFaderNum]=byteFaderValue[iFaderNum];
-"178
+[; ;main.c: 182: rawFaderValue[iFaderNum]=ADCC_GetSingleConversion(iFaderNum);
+"182
+[e = *U + &U _rawFaderValue * -> _iFaderNum `ux -> -> # *U &U _rawFaderValue `ui `ux ( _ADCC_GetSingleConversion (1 -> _iFaderNum `E14285 ]
+[; ;main.c: 183: prevbyteFaderValue[iFaderNum]=byteFaderValue[iFaderNum];
+"183
 [e = *U + &U _prevbyteFaderValue * -> _iFaderNum `ux -> -> # *U &U _prevbyteFaderValue `ui `ux *U + &U _byteFaderValue * -> _iFaderNum `ux -> -> # *U &U _byteFaderValue `ui `ux ]
-[; ;main.c: 179: byteFaderValue[iFaderNum]=(rawFaderValue[iFaderNum])>>2;
-"179
+[; ;main.c: 184: byteFaderValue[iFaderNum]=(rawFaderValue[iFaderNum])>>2;
+"184
 [e = *U + &U _byteFaderValue * -> _iFaderNum `ux -> -> # *U &U _byteFaderValue `ui `ux -> >> *U + &U _rawFaderValue * -> _iFaderNum `ux -> -> # *U &U _rawFaderValue `ui `ux -> 2 `i `uc ]
-[; ;main.c: 180: if(prevbyteFaderValue[iFaderNum]!=byteFaderValue[iFaderNum]) {
-"180
+[; ;main.c: 185: if(prevbyteFaderValue[iFaderNum]!=byteFaderValue[iFaderNum]) {
+"185
 [e $ ! != -> *U + &U _prevbyteFaderValue * -> _iFaderNum `ux -> -> # *U &U _prevbyteFaderValue `ui `ux `i -> *U + &U _byteFaderValue * -> _iFaderNum `ux -> -> # *U &U _byteFaderValue `ui `ux `i 1583  ]
 {
-[; ;main.c: 181: UpdateLEDsFromValue(iFaderNum,byteFaderValue[iFaderNum]);
-"181
+[; ;main.c: 186: UpdateLEDsFromValue(iFaderNum,byteFaderValue[iFaderNum]);
+"186
 [e ( _UpdateLEDsFromValue (2 , _iFaderNum *U + &U _byteFaderValue * -> _iFaderNum `ux -> -> # *U &U _byteFaderValue `ui `ux ]
-"183
+"188
 }
 [e :U 1583 ]
-"184
+"189
 }
-"175
+"180
 [e ++ _iFaderNum -> -> 1 `i `uc ]
 [e $ < -> _iFaderNum `i _cMaxFaderCnt 1580  ]
 [e :U 1581 ]
-"184
+"189
 }
-[; ;main.c: 183: }
-[; ;main.c: 184: }
-[; ;main.c: 191: if (1 < iLEDBytesChangedCount)
-"191
+[; ;main.c: 188: }
+[; ;main.c: 189: }
+[; ;main.c: 196: if (1 < iLEDBytesChangedCount)
+"196
 [e $ ! < -> 1 `i _iLEDBytesChangedCount 1584  ]
-[; ;main.c: 192: {
-"192
+[; ;main.c: 197: {
+"197
 {
-[; ;main.c: 193: iLEDBytesChangedCount=0;
-"193
+[; ;main.c: 198: iLEDBytesChangedCount=0;
+"198
 [e = _iLEDBytesChangedCount -> 0 `i ]
-[; ;main.c: 194: UpdateLEDs(MSByteLED,LSByteLED);
-"194
+[; ;main.c: 199: UpdateLEDs(MSByteLED,LSByteLED);
+"199
 [e ( _UpdateLEDs (2 , _MSByteLED _LSByteLED ]
-"195
+"200
 }
 [e :U 1584 ]
-"198
+"203
 }
 [e :U 1577 ]
-"172
+"177
 [e $U 1578  ]
 [e :U 1579 ]
-[; ;main.c: 195: }
-[; ;main.c: 198: }
-[; ;main.c: 199: }
-"199
+[; ;main.c: 200: }
+[; ;main.c: 203: }
+[; ;main.c: 204: }
+"204
 [e :UE 1573 ]
 }
-"200
+"205
 [v _UpdateLEDsFromValue `(v ~T0 @X0 1 ef2`uc`uc ]
-"201
+"206
 {
-[; ;main.c: 200: void UpdateLEDsFromValue(uint8_t inFaderNum,uint8_t inValue)
-[; ;main.c: 201: {
+[; ;main.c: 205: void UpdateLEDsFromValue(uint8_t inFaderNum,uint8_t inValue)
+[; ;main.c: 206: {
 [e :U _UpdateLEDsFromValue ]
-"200
+"205
 [v _inFaderNum `uc ~T0 @X0 1 r1 ]
 [v _inValue `uc ~T0 @X0 1 r2 ]
-"201
-[f ]
-"202
-[v _wkOnFlag `uc ~T0 @X0 1 a ]
-[; ;main.c: 202: bool wkOnFlag = 0;
-[e = _wkOnFlag -> -> 0 `i `uc ]
-"203
-[v _wkBrightFlag `uc ~T0 @X0 1 a ]
-[; ;main.c: 203: bool wkBrightFlag = 0;
-[e = _wkBrightFlag -> -> 0 `i `uc ]
-[; ;main.c: 206: if (inValue > 80) wkOnFlag=1;
 "206
+[f ]
+"207
+[v _wkOnFlag `uc ~T0 @X0 1 a ]
+[; ;main.c: 207: bool wkOnFlag = 0;
+[e = _wkOnFlag -> -> 0 `i `uc ]
+"208
+[v _wkBrightFlag `uc ~T0 @X0 1 a ]
+[; ;main.c: 208: bool wkBrightFlag = 0;
+[e = _wkBrightFlag -> -> 0 `i `uc ]
+[; ;main.c: 211: if (inValue > 80) wkOnFlag=1;
+"211
 [e $ ! > -> _inValue `i -> 80 `i 1586  ]
 [e = _wkOnFlag -> -> 1 `i `uc ]
 [e :U 1586 ]
-[; ;main.c: 207: if (inValue > 170) wkBrightFlag=1;
-"207
+[; ;main.c: 212: if (inValue > 170) wkBrightFlag=1;
+"212
 [e $ ! > -> _inValue `i -> 170 `i 1587  ]
 [e = _wkBrightFlag -> -> 1 `i `uc ]
 [e :U 1587 ]
-[; ;main.c: 209: switch(inFaderNum)
-"209
+[; ;main.c: 214: switch(inFaderNum)
+"214
 [e $U 1589  ]
-[; ;main.c: 210: {
-"210
+[; ;main.c: 215: {
+"215
 {
-[; ;main.c: 211: case 0 : {
-"211
+[; ;main.c: 216: case 0 : {
+"216
 [e :U 1590 ]
 {
-[; ;main.c: 212: if(wkOnFlag) { LATB |= 0b00000001;
-"212
+[; ;main.c: 217: if(wkOnFlag) { LATB |= 0b00000001;
+"217
 [e $ ! != -> _wkOnFlag `i -> -> -> 0 `i `uc `i 1591  ]
 {
 [e =| _LATB -> -> 1 `i `uc ]
-[; ;main.c: 213: if(wkBrightFlag) {ODCONB &= 0b11111110;}else{ODCONB |= 0b00000001;};
-"213
+[; ;main.c: 218: if(wkBrightFlag) {ODCONB &= 0b11111110;}else{ODCONB |= 0b00000001;};
+"218
 [e $ ! != -> _wkBrightFlag `i -> -> -> 0 `i `uc `i 1592  ]
 {
 [e =& _ODCONB -> -> 254 `i `uc ]
@@ -13536,9 +13541,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =| _ODCONB -> -> 1 `i `uc ]
 }
 [e :U 1593 ]
-"214
+"219
 }
-[; ;main.c: 214: }else{ LATB &= 0b11111110; ODCONB &= 0b11111110; }
+[; ;main.c: 219: }else{ LATB &= 0b11111110; ODCONB &= 0b11111110; }
 [e $U 1594  ]
 [e :U 1591 ]
 {
@@ -13546,23 +13551,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =& _ODCONB -> -> 254 `i `uc ]
 }
 [e :U 1594 ]
-[; ;main.c: 215: break;
-"215
+[; ;main.c: 220: break;
+"220
 [e $U 1588  ]
-"216
+"221
 }
-[; ;main.c: 216: }
-[; ;main.c: 217: case 1 : {
-"217
+[; ;main.c: 221: }
+[; ;main.c: 222: case 1 : {
+"222
 [e :U 1595 ]
 {
-[; ;main.c: 218: if(wkOnFlag) { LATB |= 0b00000010;
-"218
+[; ;main.c: 223: if(wkOnFlag) { LATB |= 0b00000010;
+"223
 [e $ ! != -> _wkOnFlag `i -> -> -> 0 `i `uc `i 1596  ]
 {
 [e =| _LATB -> -> 2 `i `uc ]
-[; ;main.c: 219: if(wkBrightFlag) {ODCONB &= 0b11111101;}else{ODCONB |= 0b00000010;};
-"219
+[; ;main.c: 224: if(wkBrightFlag) {ODCONB &= 0b11111101;}else{ODCONB |= 0b00000010;};
+"224
 [e $ ! != -> _wkBrightFlag `i -> -> -> 0 `i `uc `i 1597  ]
 {
 [e =& _ODCONB -> -> 253 `i `uc ]
@@ -13573,9 +13578,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =| _ODCONB -> -> 2 `i `uc ]
 }
 [e :U 1598 ]
-"220
+"225
 }
-[; ;main.c: 220: }else{ LATB &= 0b11111101; ODCONB &= 0b11111101; }
+[; ;main.c: 225: }else{ LATB &= 0b11111101; ODCONB &= 0b11111101; }
 [e $U 1599  ]
 [e :U 1596 ]
 {
@@ -13583,23 +13588,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =& _ODCONB -> -> 253 `i `uc ]
 }
 [e :U 1599 ]
-[; ;main.c: 221: break;
-"221
+[; ;main.c: 226: break;
+"226
 [e $U 1588  ]
-"222
+"227
 }
-[; ;main.c: 222: }
-[; ;main.c: 223: case 2 : {
-"223
+[; ;main.c: 227: }
+[; ;main.c: 228: case 2 : {
+"228
 [e :U 1600 ]
 {
-[; ;main.c: 224: if(wkOnFlag) { LATB |= 0b00000100;
-"224
+[; ;main.c: 229: if(wkOnFlag) { LATB |= 0b00000100;
+"229
 [e $ ! != -> _wkOnFlag `i -> -> -> 0 `i `uc `i 1601  ]
 {
 [e =| _LATB -> -> 4 `i `uc ]
-[; ;main.c: 225: if(wkBrightFlag) {ODCONB &= 0b11111011;}else{ODCONB |= 0b00000100;}
-"225
+[; ;main.c: 230: if(wkBrightFlag) {ODCONB &= 0b11111011;}else{ODCONB |= 0b00000100;}
+"230
 [e $ ! != -> _wkBrightFlag `i -> -> -> 0 `i `uc `i 1602  ]
 {
 [e =& _ODCONB -> -> 251 `i `uc ]
@@ -13610,9 +13615,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =| _ODCONB -> -> 4 `i `uc ]
 }
 [e :U 1603 ]
-"226
+"231
 }
-[; ;main.c: 226: }else{ LATB &= 0b11111011; ODCONB &= 0b11111011; }
+[; ;main.c: 231: }else{ LATB &= 0b11111011; ODCONB &= 0b11111011; }
 [e $U 1604  ]
 [e :U 1601 ]
 {
@@ -13620,23 +13625,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =& _ODCONB -> -> 251 `i `uc ]
 }
 [e :U 1604 ]
-[; ;main.c: 227: break;
-"227
+[; ;main.c: 232: break;
+"232
 [e $U 1588  ]
-"228
+"233
 }
-[; ;main.c: 228: }
-[; ;main.c: 229: case 3 : {
-"229
+[; ;main.c: 233: }
+[; ;main.c: 234: case 3 : {
+"234
 [e :U 1605 ]
 {
-[; ;main.c: 230: if(wkOnFlag) { LATB |= 0b00001000;
-"230
+[; ;main.c: 235: if(wkOnFlag) { LATB |= 0b00001000;
+"235
 [e $ ! != -> _wkOnFlag `i -> -> -> 0 `i `uc `i 1606  ]
 {
 [e =| _LATB -> -> 8 `i `uc ]
-[; ;main.c: 231: if(wkBrightFlag) {ODCONB &= 0b11110111;}else{ODCONB |= 0b00001000;}
-"231
+[; ;main.c: 236: if(wkBrightFlag) {ODCONB &= 0b11110111;}else{ODCONB |= 0b00001000;}
+"236
 [e $ ! != -> _wkBrightFlag `i -> -> -> 0 `i `uc `i 1607  ]
 {
 [e =& _ODCONB -> -> 247 `i `uc ]
@@ -13647,9 +13652,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =| _ODCONB -> -> 8 `i `uc ]
 }
 [e :U 1608 ]
-"232
+"237
 }
-[; ;main.c: 232: }else{ LATB &= 0b11110111; ODCONB &= 0b11110111; }
+[; ;main.c: 237: }else{ LATB &= 0b11110111; ODCONB &= 0b11110111; }
 [e $U 1609  ]
 [e :U 1606 ]
 {
@@ -13657,23 +13662,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =& _ODCONB -> -> 247 `i `uc ]
 }
 [e :U 1609 ]
-[; ;main.c: 233: break;
-"233
+[; ;main.c: 238: break;
+"238
 [e $U 1588  ]
-"234
+"239
 }
-[; ;main.c: 234: }
-[; ;main.c: 235: case 4 : {
-"235
+[; ;main.c: 239: }
+[; ;main.c: 240: case 4 : {
+"240
 [e :U 1610 ]
 {
-[; ;main.c: 236: if(wkOnFlag) { LATB |= 0b00010000;
-"236
+[; ;main.c: 241: if(wkOnFlag) { LATB |= 0b00010000;
+"241
 [e $ ! != -> _wkOnFlag `i -> -> -> 0 `i `uc `i 1611  ]
 {
 [e =| _LATB -> -> 16 `i `uc ]
-[; ;main.c: 237: if(wkBrightFlag) {ODCONB &= 0b11101111;}else{ODCONB |= 0b00010000;}
-"237
+[; ;main.c: 242: if(wkBrightFlag) {ODCONB &= 0b11101111;}else{ODCONB |= 0b00010000;}
+"242
 [e $ ! != -> _wkBrightFlag `i -> -> -> 0 `i `uc `i 1612  ]
 {
 [e =& _ODCONB -> -> 239 `i `uc ]
@@ -13684,9 +13689,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =| _ODCONB -> -> 16 `i `uc ]
 }
 [e :U 1613 ]
-"238
+"243
 }
-[; ;main.c: 238: }else{ LATB &= 0b11101111; ODCONB &= 0b11101111; }
+[; ;main.c: 243: }else{ LATB &= 0b11101111; ODCONB &= 0b11101111; }
 [e $U 1614  ]
 [e :U 1611 ]
 {
@@ -13694,23 +13699,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =& _ODCONB -> -> 239 `i `uc ]
 }
 [e :U 1614 ]
-[; ;main.c: 239: break;
-"239
+[; ;main.c: 244: break;
+"244
 [e $U 1588  ]
-"240
+"245
 }
-[; ;main.c: 240: }
-[; ;main.c: 241: case 5 : {
-"241
+[; ;main.c: 245: }
+[; ;main.c: 246: case 5 : {
+"246
 [e :U 1615 ]
 {
-[; ;main.c: 242: if(wkOnFlag) { LATC |= 0b00100000;
-"242
+[; ;main.c: 247: if(wkOnFlag) { LATC |= 0b00100000;
+"247
 [e $ ! != -> _wkOnFlag `i -> -> -> 0 `i `uc `i 1616  ]
 {
 [e =| _LATC -> -> 32 `i `uc ]
-[; ;main.c: 243: if(wkBrightFlag) {ODCONC &= 0b11011111;}else{ODCONC |= 0b00100000;}
-"243
+[; ;main.c: 248: if(wkBrightFlag) {ODCONC &= 0b11011111;}else{ODCONC |= 0b00100000;}
+"248
 [e $ ! != -> _wkBrightFlag `i -> -> -> 0 `i `uc `i 1617  ]
 {
 [e =& _ODCONC -> -> 223 `i `uc ]
@@ -13721,9 +13726,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =| _ODCONC -> -> 32 `i `uc ]
 }
 [e :U 1618 ]
-"244
+"249
 }
-[; ;main.c: 244: }else{ LATC &= 0b11011111; ODCONC &= 0b11011111; }
+[; ;main.c: 249: }else{ LATC &= 0b11011111; ODCONC &= 0b11011111; }
 [e $U 1619  ]
 [e :U 1616 ]
 {
@@ -13731,23 +13736,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =& _ODCONC -> -> 223 `i `uc ]
 }
 [e :U 1619 ]
-[; ;main.c: 245: break;
-"245
+[; ;main.c: 250: break;
+"250
 [e $U 1588  ]
-"246
+"251
 }
-[; ;main.c: 246: }
-[; ;main.c: 247: case 6 : {
-"247
+[; ;main.c: 251: }
+[; ;main.c: 252: case 6 : {
+"252
 [e :U 1620 ]
 {
-[; ;main.c: 248: if(wkOnFlag) { LATC |= 0b01000000;
-"248
+[; ;main.c: 253: if(wkOnFlag) { LATC |= 0b01000000;
+"253
 [e $ ! != -> _wkOnFlag `i -> -> -> 0 `i `uc `i 1621  ]
 {
 [e =| _LATC -> -> 64 `i `uc ]
-[; ;main.c: 249: if(wkBrightFlag) {ODCONC &= 0b10111111;}else{ODCONC |= 0b01000000;}
-"249
+[; ;main.c: 254: if(wkBrightFlag) {ODCONC &= 0b10111111;}else{ODCONC |= 0b01000000;}
+"254
 [e $ ! != -> _wkBrightFlag `i -> -> -> 0 `i `uc `i 1622  ]
 {
 [e =& _ODCONC -> -> 191 `i `uc ]
@@ -13758,9 +13763,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =| _ODCONC -> -> 64 `i `uc ]
 }
 [e :U 1623 ]
-"250
+"255
 }
-[; ;main.c: 250: }else{ LATC &= 0b10111111; ODCONC &= 0b10111111; }
+[; ;main.c: 255: }else{ LATC &= 0b10111111; ODCONC &= 0b10111111; }
 [e $U 1624  ]
 [e :U 1621 ]
 {
@@ -13768,23 +13773,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =& _ODCONC -> -> 191 `i `uc ]
 }
 [e :U 1624 ]
-[; ;main.c: 251: break;
-"251
+[; ;main.c: 256: break;
+"256
 [e $U 1588  ]
-"252
+"257
 }
-[; ;main.c: 252: }
-[; ;main.c: 253: case 7 : {
-"253
+[; ;main.c: 257: }
+[; ;main.c: 258: case 7 : {
+"258
 [e :U 1625 ]
 {
-[; ;main.c: 254: if(wkOnFlag) { LATC |= 0b10000000;
-"254
+[; ;main.c: 259: if(wkOnFlag) { LATC |= 0b10000000;
+"259
 [e $ ! != -> _wkOnFlag `i -> -> -> 0 `i `uc `i 1626  ]
 {
 [e =| _LATC -> -> 128 `i `uc ]
-[; ;main.c: 255: if(wkBrightFlag) {ODCONC &= 0b01111111;}else{ODCONC |= 0b10000000;}
-"255
+[; ;main.c: 260: if(wkBrightFlag) {ODCONC &= 0b01111111;}else{ODCONC |= 0b10000000;}
+"260
 [e $ ! != -> _wkBrightFlag `i -> -> -> 0 `i `uc `i 1627  ]
 {
 [e =& _ODCONC -> -> 127 `i `uc ]
@@ -13795,9 +13800,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =| _ODCONC -> -> 128 `i `uc ]
 }
 [e :U 1628 ]
-"256
+"261
 }
-[; ;main.c: 256: }else{ LATC &= 0b01111111; ODCONC &= 0b01111111; }
+[; ;main.c: 261: }else{ LATC &= 0b01111111; ODCONC &= 0b01111111; }
 [e $U 1629  ]
 [e :U 1626 ]
 {
@@ -13805,14 +13810,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =& _ODCONC -> -> 127 `i `uc ]
 }
 [e :U 1629 ]
-"257
+"262
 }
-"258
+"263
 }
-[; ;main.c: 257: }
-[; ;main.c: 258: }
+[; ;main.c: 262: }
+[; ;main.c: 263: }
 [e $U 1588  ]
-"209
+"214
 [e :U 1589 ]
 [e [\ _inFaderNum , $ -> -> 0 `i `uc 1590
  , $ -> -> 1 `i `uc 1595
@@ -13823,472 +13828,472 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 6 `i `uc 1620
  , $ -> -> 7 `i `uc 1625
  1588 ]
-"258
+"263
 [e :U 1588 ]
-[; ;main.c: 259: }
-"259
+[; ;main.c: 264: }
+"264
 [e :UE 1585 ]
 }
-"260
+"265
 [v _UpdateLEDs `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;main.c: 260: void UpdateLEDs(uint8_t inMSByteLED,uint8_t inLSByteLED){
+[; ;main.c: 265: void UpdateLEDs(uint8_t inMSByteLED,uint8_t inLSByteLED){
 [e :U _UpdateLEDs ]
 [v _inMSByteLED `uc ~T0 @X0 1 r1 ]
 [v _inLSByteLED `uc ~T0 @X0 1 r2 ]
 [f ]
-"261
+"266
 [v _wkByte `uc ~T0 @X0 1 a ]
-[; ;main.c: 261: uint8_t wkByte;
-[; ;main.c: 272: wkByte=inLSByteLED;
-"272
-[e = _wkByte _inLSByteLED ]
-[; ;main.c: 273: wkByte &= 0b00000010;
-"273
-[e =& _wkByte -> -> 2 `i `uc ]
-[; ;main.c: 274: if(0<wkByte)
-"274
-[e $ ! < -> 0 `i -> _wkByte `i 1631  ]
-[; ;main.c: 275: {
-"275
-{
-[; ;main.c: 276: LATB |= 0b00000001;
-"276
-[e =| _LATB -> -> 1 `i `uc ]
+[; ;main.c: 266: uint8_t wkByte;
+[; ;main.c: 277: wkByte=inLSByteLED;
 "277
+[e = _wkByte _inLSByteLED ]
+[; ;main.c: 278: wkByte &= 0b00000010;
+"278
+[e =& _wkByte -> -> 2 `i `uc ]
+[; ;main.c: 279: if(0<wkByte)
+"279
+[e $ ! < -> 0 `i -> _wkByte `i 1631  ]
+[; ;main.c: 280: {
+"280
+{
+[; ;main.c: 281: LATB |= 0b00000001;
+"281
+[e =| _LATB -> -> 1 `i `uc ]
+"282
 }
-[; ;main.c: 277: }else{
+[; ;main.c: 282: }else{
 [e $U 1632  ]
 [e :U 1631 ]
 {
-[; ;main.c: 278: LATB &= 0b11111110;
-"278
+[; ;main.c: 283: LATB &= 0b11111110;
+"283
 [e =& _LATB -> -> 254 `i `uc ]
-"279
+"284
 }
 [e :U 1632 ]
-[; ;main.c: 279: }
-[; ;main.c: 280: wkByte=inLSByteLED;
-"280
-[e = _wkByte _inLSByteLED ]
-[; ;main.c: 281: wkByte &= 0b00000001;
-"281
-[e =& _wkByte -> -> 1 `i `uc ]
-[; ;main.c: 282: if(0<wkByte)
-"282
-[e $ ! < -> 0 `i -> _wkByte `i 1633  ]
-[; ;main.c: 283: {
-"283
-{
-[; ;main.c: 284: ODCONB &= 0b11111110;
-"284
-[e =& _ODCONB -> -> 254 `i `uc ]
+[; ;main.c: 284: }
+[; ;main.c: 285: wkByte=inLSByteLED;
 "285
+[e = _wkByte _inLSByteLED ]
+[; ;main.c: 286: wkByte &= 0b00000001;
+"286
+[e =& _wkByte -> -> 1 `i `uc ]
+[; ;main.c: 287: if(0<wkByte)
+"287
+[e $ ! < -> 0 `i -> _wkByte `i 1633  ]
+[; ;main.c: 288: {
+"288
+{
+[; ;main.c: 289: ODCONB &= 0b11111110;
+"289
+[e =& _ODCONB -> -> 254 `i `uc ]
+"290
 }
-[; ;main.c: 285: }else{
+[; ;main.c: 290: }else{
 [e $U 1634  ]
 [e :U 1633 ]
 {
-[; ;main.c: 287: ODCONB |= 0b00000001;
-"287
+[; ;main.c: 292: ODCONB |= 0b00000001;
+"292
 [e =| _ODCONB -> -> 1 `i `uc ]
-"288
+"293
 }
 [e :U 1634 ]
-[; ;main.c: 288: }
-[; ;main.c: 290: wkByte=inLSByteLED;
-"290
-[e = _wkByte _inLSByteLED ]
-[; ;main.c: 291: wkByte &= 0b00001000;
-"291
-[e =& _wkByte -> -> 8 `i `uc ]
-[; ;main.c: 292: if(0<wkByte)
-"292
-[e $ ! < -> 0 `i -> _wkByte `i 1635  ]
-[; ;main.c: 293: {
-"293
-{
-[; ;main.c: 294: LATB |= 0b00000010;
-"294
-[e =| _LATB -> -> 2 `i `uc ]
+[; ;main.c: 293: }
+[; ;main.c: 295: wkByte=inLSByteLED;
 "295
+[e = _wkByte _inLSByteLED ]
+[; ;main.c: 296: wkByte &= 0b00001000;
+"296
+[e =& _wkByte -> -> 8 `i `uc ]
+[; ;main.c: 297: if(0<wkByte)
+"297
+[e $ ! < -> 0 `i -> _wkByte `i 1635  ]
+[; ;main.c: 298: {
+"298
+{
+[; ;main.c: 299: LATB |= 0b00000010;
+"299
+[e =| _LATB -> -> 2 `i `uc ]
+"300
 }
-[; ;main.c: 295: }else{
+[; ;main.c: 300: }else{
 [e $U 1636  ]
 [e :U 1635 ]
 {
-[; ;main.c: 296: LATB &= 0b11111101;
-"296
+[; ;main.c: 301: LATB &= 0b11111101;
+"301
 [e =& _LATB -> -> 253 `i `uc ]
-"297
+"302
 }
 [e :U 1636 ]
-[; ;main.c: 297: }
-[; ;main.c: 298: wkByte=inLSByteLED;
-"298
-[e = _wkByte _inLSByteLED ]
-[; ;main.c: 299: wkByte &= 0b00000100;
-"299
-[e =& _wkByte -> -> 4 `i `uc ]
-[; ;main.c: 300: if(0<wkByte)
-"300
-[e $ ! < -> 0 `i -> _wkByte `i 1637  ]
-[; ;main.c: 301: {
-"301
-{
-[; ;main.c: 302: ODCONB &= 0b11111101;
-"302
-[e =& _ODCONB -> -> 253 `i `uc ]
+[; ;main.c: 302: }
+[; ;main.c: 303: wkByte=inLSByteLED;
 "303
+[e = _wkByte _inLSByteLED ]
+[; ;main.c: 304: wkByte &= 0b00000100;
+"304
+[e =& _wkByte -> -> 4 `i `uc ]
+[; ;main.c: 305: if(0<wkByte)
+"305
+[e $ ! < -> 0 `i -> _wkByte `i 1637  ]
+[; ;main.c: 306: {
+"306
+{
+[; ;main.c: 307: ODCONB &= 0b11111101;
+"307
+[e =& _ODCONB -> -> 253 `i `uc ]
+"308
 }
-[; ;main.c: 303: }else{
+[; ;main.c: 308: }else{
 [e $U 1638  ]
 [e :U 1637 ]
 {
-[; ;main.c: 305: ODCONB |= 0b00000010;
-"305
+[; ;main.c: 310: ODCONB |= 0b00000010;
+"310
 [e =| _ODCONB -> -> 2 `i `uc ]
-"306
+"311
 }
 [e :U 1638 ]
-[; ;main.c: 306: }
-[; ;main.c: 308: wkByte=inLSByteLED;
-"308
-[e = _wkByte _inLSByteLED ]
-[; ;main.c: 309: wkByte &= 0b00100000;
-"309
-[e =& _wkByte -> -> 32 `i `uc ]
-[; ;main.c: 310: if(0<wkByte)
-"310
-[e $ ! < -> 0 `i -> _wkByte `i 1639  ]
-[; ;main.c: 311: {
-"311
-{
-[; ;main.c: 312: LATB |= 0b00000100;
-"312
-[e =| _LATB -> -> 4 `i `uc ]
+[; ;main.c: 311: }
+[; ;main.c: 313: wkByte=inLSByteLED;
 "313
+[e = _wkByte _inLSByteLED ]
+[; ;main.c: 314: wkByte &= 0b00100000;
+"314
+[e =& _wkByte -> -> 32 `i `uc ]
+[; ;main.c: 315: if(0<wkByte)
+"315
+[e $ ! < -> 0 `i -> _wkByte `i 1639  ]
+[; ;main.c: 316: {
+"316
+{
+[; ;main.c: 317: LATB |= 0b00000100;
+"317
+[e =| _LATB -> -> 4 `i `uc ]
+"318
 }
-[; ;main.c: 313: }else{
+[; ;main.c: 318: }else{
 [e $U 1640  ]
 [e :U 1639 ]
 {
-[; ;main.c: 314: LATB &= 0b11111011;
-"314
+[; ;main.c: 319: LATB &= 0b11111011;
+"319
 [e =& _LATB -> -> 251 `i `uc ]
-"315
+"320
 }
 [e :U 1640 ]
-[; ;main.c: 315: }
-[; ;main.c: 316: wkByte=inLSByteLED;
-"316
-[e = _wkByte _inLSByteLED ]
-[; ;main.c: 317: wkByte &= 0b00010000;
-"317
-[e =& _wkByte -> -> 16 `i `uc ]
-[; ;main.c: 318: if(0<wkByte)
-"318
-[e $ ! < -> 0 `i -> _wkByte `i 1641  ]
-[; ;main.c: 319: {
-"319
-{
-[; ;main.c: 320: ODCONB &= 0b11111011;
-"320
-[e =& _ODCONB -> -> 251 `i `uc ]
+[; ;main.c: 320: }
+[; ;main.c: 321: wkByte=inLSByteLED;
 "321
+[e = _wkByte _inLSByteLED ]
+[; ;main.c: 322: wkByte &= 0b00010000;
+"322
+[e =& _wkByte -> -> 16 `i `uc ]
+[; ;main.c: 323: if(0<wkByte)
+"323
+[e $ ! < -> 0 `i -> _wkByte `i 1641  ]
+[; ;main.c: 324: {
+"324
+{
+[; ;main.c: 325: ODCONB &= 0b11111011;
+"325
+[e =& _ODCONB -> -> 251 `i `uc ]
+"326
 }
-[; ;main.c: 321: }else{
+[; ;main.c: 326: }else{
 [e $U 1642  ]
 [e :U 1641 ]
 {
-[; ;main.c: 323: ODCONB |= 0b00000100;
-"323
+[; ;main.c: 328: ODCONB |= 0b00000100;
+"328
 [e =| _ODCONB -> -> 4 `i `uc ]
-"324
+"329
 }
 [e :U 1642 ]
-[; ;main.c: 324: }
-[; ;main.c: 326: wkByte=inLSByteLED;
-"326
-[e = _wkByte _inLSByteLED ]
-[; ;main.c: 327: wkByte &= 0b10000000;
-"327
-[e =& _wkByte -> -> 128 `i `uc ]
-[; ;main.c: 328: if(0<wkByte)
-"328
-[e $ ! < -> 0 `i -> _wkByte `i 1643  ]
-[; ;main.c: 329: {
-"329
-{
-[; ;main.c: 330: LATB |= 0b00001000;
-"330
-[e =| _LATB -> -> 8 `i `uc ]
+[; ;main.c: 329: }
+[; ;main.c: 331: wkByte=inLSByteLED;
 "331
+[e = _wkByte _inLSByteLED ]
+[; ;main.c: 332: wkByte &= 0b10000000;
+"332
+[e =& _wkByte -> -> 128 `i `uc ]
+[; ;main.c: 333: if(0<wkByte)
+"333
+[e $ ! < -> 0 `i -> _wkByte `i 1643  ]
+[; ;main.c: 334: {
+"334
+{
+[; ;main.c: 335: LATB |= 0b00001000;
+"335
+[e =| _LATB -> -> 8 `i `uc ]
+"336
 }
-[; ;main.c: 331: }else{
+[; ;main.c: 336: }else{
 [e $U 1644  ]
 [e :U 1643 ]
 {
-[; ;main.c: 332: LATB &= 0b11110111;
-"332
+[; ;main.c: 337: LATB &= 0b11110111;
+"337
 [e =& _LATB -> -> 247 `i `uc ]
-"333
+"338
 }
 [e :U 1644 ]
-[; ;main.c: 333: }
-[; ;main.c: 334: wkByte=inLSByteLED;
-"334
-[e = _wkByte _inLSByteLED ]
-[; ;main.c: 335: wkByte &= 0b01000000;
-"335
-[e =& _wkByte -> -> 64 `i `uc ]
-[; ;main.c: 336: if(0<wkByte)
-"336
-[e $ ! < -> 0 `i -> _wkByte `i 1645  ]
-[; ;main.c: 337: {
-"337
-{
-[; ;main.c: 338: ODCONB &= 0b11110111;
-"338
-[e =& _ODCONB -> -> 247 `i `uc ]
+[; ;main.c: 338: }
+[; ;main.c: 339: wkByte=inLSByteLED;
 "339
+[e = _wkByte _inLSByteLED ]
+[; ;main.c: 340: wkByte &= 0b01000000;
+"340
+[e =& _wkByte -> -> 64 `i `uc ]
+[; ;main.c: 341: if(0<wkByte)
+"341
+[e $ ! < -> 0 `i -> _wkByte `i 1645  ]
+[; ;main.c: 342: {
+"342
+{
+[; ;main.c: 343: ODCONB &= 0b11110111;
+"343
+[e =& _ODCONB -> -> 247 `i `uc ]
+"344
 }
-[; ;main.c: 339: }else{
+[; ;main.c: 344: }else{
 [e $U 1646  ]
 [e :U 1645 ]
 {
-[; ;main.c: 341: ODCONB |= 0b00001000;
-"341
+[; ;main.c: 346: ODCONB |= 0b00001000;
+"346
 [e =| _ODCONB -> -> 8 `i `uc ]
-"342
+"347
 }
 [e :U 1646 ]
-[; ;main.c: 342: }
-[; ;main.c: 344: wkByte=inMSByteLED;
-"344
-[e = _wkByte _inMSByteLED ]
-[; ;main.c: 345: wkByte &= 0b00000010;
-"345
-[e =& _wkByte -> -> 2 `i `uc ]
-[; ;main.c: 346: if(0<wkByte)
-"346
-[e $ ! < -> 0 `i -> _wkByte `i 1647  ]
-[; ;main.c: 347: {
-"347
-{
-[; ;main.c: 348: LATB |= 0b00010000;
-"348
-[e =| _LATB -> -> 16 `i `uc ]
+[; ;main.c: 347: }
+[; ;main.c: 349: wkByte=inMSByteLED;
 "349
+[e = _wkByte _inMSByteLED ]
+[; ;main.c: 350: wkByte &= 0b00000010;
+"350
+[e =& _wkByte -> -> 2 `i `uc ]
+[; ;main.c: 351: if(0<wkByte)
+"351
+[e $ ! < -> 0 `i -> _wkByte `i 1647  ]
+[; ;main.c: 352: {
+"352
+{
+[; ;main.c: 353: LATB |= 0b00010000;
+"353
+[e =| _LATB -> -> 16 `i `uc ]
+"354
 }
-[; ;main.c: 349: }else{
+[; ;main.c: 354: }else{
 [e $U 1648  ]
 [e :U 1647 ]
 {
-[; ;main.c: 350: LATB &= 0b11101111;
-"350
+[; ;main.c: 355: LATB &= 0b11101111;
+"355
 [e =& _LATB -> -> 239 `i `uc ]
-"351
+"356
 }
 [e :U 1648 ]
-[; ;main.c: 351: }
-[; ;main.c: 352: wkByte=inMSByteLED;
-"352
-[e = _wkByte _inMSByteLED ]
-[; ;main.c: 353: wkByte &= 0b00000001;
-"353
-[e =& _wkByte -> -> 1 `i `uc ]
-[; ;main.c: 354: if(0<wkByte)
-"354
-[e $ ! < -> 0 `i -> _wkByte `i 1649  ]
-[; ;main.c: 355: {
-"355
-{
-[; ;main.c: 356: ODCONB &= 0b11101111;
-"356
-[e =& _ODCONB -> -> 239 `i `uc ]
+[; ;main.c: 356: }
+[; ;main.c: 357: wkByte=inMSByteLED;
 "357
+[e = _wkByte _inMSByteLED ]
+[; ;main.c: 358: wkByte &= 0b00000001;
+"358
+[e =& _wkByte -> -> 1 `i `uc ]
+[; ;main.c: 359: if(0<wkByte)
+"359
+[e $ ! < -> 0 `i -> _wkByte `i 1649  ]
+[; ;main.c: 360: {
+"360
+{
+[; ;main.c: 361: ODCONB &= 0b11101111;
+"361
+[e =& _ODCONB -> -> 239 `i `uc ]
+"362
 }
-[; ;main.c: 357: }else{
+[; ;main.c: 362: }else{
 [e $U 1650  ]
 [e :U 1649 ]
 {
-[; ;main.c: 359: ODCONB |= 0b00010000;
-"359
+[; ;main.c: 364: ODCONB |= 0b00010000;
+"364
 [e =| _ODCONB -> -> 16 `i `uc ]
-"360
+"365
 }
 [e :U 1650 ]
-[; ;main.c: 360: }
-[; ;main.c: 362: wkByte=inMSByteLED;
-"362
-[e = _wkByte _inMSByteLED ]
-[; ;main.c: 363: wkByte &= 0b00001000;
-"363
-[e =& _wkByte -> -> 8 `i `uc ]
-[; ;main.c: 364: if(0<wkByte)
-"364
-[e $ ! < -> 0 `i -> _wkByte `i 1651  ]
-[; ;main.c: 365: {
-"365
-{
-[; ;main.c: 366: LATC |= 0b00100000;
-"366
-[e =| _LATC -> -> 32 `i `uc ]
+[; ;main.c: 365: }
+[; ;main.c: 367: wkByte=inMSByteLED;
 "367
+[e = _wkByte _inMSByteLED ]
+[; ;main.c: 368: wkByte &= 0b00001000;
+"368
+[e =& _wkByte -> -> 8 `i `uc ]
+[; ;main.c: 369: if(0<wkByte)
+"369
+[e $ ! < -> 0 `i -> _wkByte `i 1651  ]
+[; ;main.c: 370: {
+"370
+{
+[; ;main.c: 371: LATC |= 0b00100000;
+"371
+[e =| _LATC -> -> 32 `i `uc ]
+"372
 }
-[; ;main.c: 367: }else{
+[; ;main.c: 372: }else{
 [e $U 1652  ]
 [e :U 1651 ]
 {
-[; ;main.c: 368: LATC &= 0b11011111;
-"368
+[; ;main.c: 373: LATC &= 0b11011111;
+"373
 [e =& _LATC -> -> 223 `i `uc ]
-"369
+"374
 }
 [e :U 1652 ]
-[; ;main.c: 369: }
-[; ;main.c: 370: wkByte=inMSByteLED;
-"370
-[e = _wkByte _inMSByteLED ]
-[; ;main.c: 371: wkByte &= 0b00000100;
-"371
-[e =& _wkByte -> -> 4 `i `uc ]
-[; ;main.c: 372: if(0<wkByte)
-"372
-[e $ ! < -> 0 `i -> _wkByte `i 1653  ]
-[; ;main.c: 373: {
-"373
-{
-[; ;main.c: 374: ODCONC &= 0b11011111;
-"374
-[e =& _ODCONC -> -> 223 `i `uc ]
+[; ;main.c: 374: }
+[; ;main.c: 375: wkByte=inMSByteLED;
 "375
+[e = _wkByte _inMSByteLED ]
+[; ;main.c: 376: wkByte &= 0b00000100;
+"376
+[e =& _wkByte -> -> 4 `i `uc ]
+[; ;main.c: 377: if(0<wkByte)
+"377
+[e $ ! < -> 0 `i -> _wkByte `i 1653  ]
+[; ;main.c: 378: {
+"378
+{
+[; ;main.c: 379: ODCONC &= 0b11011111;
+"379
+[e =& _ODCONC -> -> 223 `i `uc ]
+"380
 }
-[; ;main.c: 375: }else{
+[; ;main.c: 380: }else{
 [e $U 1654  ]
 [e :U 1653 ]
 {
-[; ;main.c: 377: ODCONC |= 0b00100000;
-"377
+[; ;main.c: 382: ODCONC |= 0b00100000;
+"382
 [e =| _ODCONC -> -> 32 `i `uc ]
-"378
+"383
 }
 [e :U 1654 ]
-[; ;main.c: 378: }
-[; ;main.c: 380: wkByte=inMSByteLED;
-"380
-[e = _wkByte _inMSByteLED ]
-[; ;main.c: 381: wkByte &= 0b00100000;
-"381
-[e =& _wkByte -> -> 32 `i `uc ]
-[; ;main.c: 382: if(0<wkByte)
-"382
-[e $ ! < -> 0 `i -> _wkByte `i 1655  ]
-[; ;main.c: 383: {
-"383
-{
-[; ;main.c: 384: LATC |= 0b01000000;
-"384
-[e =| _LATC -> -> 64 `i `uc ]
+[; ;main.c: 383: }
+[; ;main.c: 385: wkByte=inMSByteLED;
 "385
+[e = _wkByte _inMSByteLED ]
+[; ;main.c: 386: wkByte &= 0b00100000;
+"386
+[e =& _wkByte -> -> 32 `i `uc ]
+[; ;main.c: 387: if(0<wkByte)
+"387
+[e $ ! < -> 0 `i -> _wkByte `i 1655  ]
+[; ;main.c: 388: {
+"388
+{
+[; ;main.c: 389: LATC |= 0b01000000;
+"389
+[e =| _LATC -> -> 64 `i `uc ]
+"390
 }
-[; ;main.c: 385: }else{
+[; ;main.c: 390: }else{
 [e $U 1656  ]
 [e :U 1655 ]
 {
-[; ;main.c: 386: LATC &= 0b10111111;
-"386
+[; ;main.c: 391: LATC &= 0b10111111;
+"391
 [e =& _LATC -> -> 191 `i `uc ]
-"387
+"392
 }
 [e :U 1656 ]
-[; ;main.c: 387: }
-[; ;main.c: 388: wkByte=inMSByteLED;
-"388
-[e = _wkByte _inMSByteLED ]
-[; ;main.c: 389: wkByte &= 0b00010000;
-"389
-[e =& _wkByte -> -> 16 `i `uc ]
-[; ;main.c: 390: if(0<wkByte)
-"390
-[e $ ! < -> 0 `i -> _wkByte `i 1657  ]
-[; ;main.c: 391: {
-"391
-{
-[; ;main.c: 392: ODCONC &= 0b10111111;
-"392
-[e =& _ODCONC -> -> 191 `i `uc ]
+[; ;main.c: 392: }
+[; ;main.c: 393: wkByte=inMSByteLED;
 "393
+[e = _wkByte _inMSByteLED ]
+[; ;main.c: 394: wkByte &= 0b00010000;
+"394
+[e =& _wkByte -> -> 16 `i `uc ]
+[; ;main.c: 395: if(0<wkByte)
+"395
+[e $ ! < -> 0 `i -> _wkByte `i 1657  ]
+[; ;main.c: 396: {
+"396
+{
+[; ;main.c: 397: ODCONC &= 0b10111111;
+"397
+[e =& _ODCONC -> -> 191 `i `uc ]
+"398
 }
-[; ;main.c: 393: }else{
+[; ;main.c: 398: }else{
 [e $U 1658  ]
 [e :U 1657 ]
 {
-[; ;main.c: 395: ODCONC |= 0b01000000;
-"395
+[; ;main.c: 400: ODCONC |= 0b01000000;
+"400
 [e =| _ODCONC -> -> 64 `i `uc ]
-"396
+"401
 }
 [e :U 1658 ]
-[; ;main.c: 396: }
-[; ;main.c: 398: wkByte=inMSByteLED;
-"398
-[e = _wkByte _inMSByteLED ]
-[; ;main.c: 399: wkByte &= 0b10000000;
-"399
-[e =& _wkByte -> -> 128 `i `uc ]
-[; ;main.c: 400: if(0<wkByte)
-"400
-[e $ ! < -> 0 `i -> _wkByte `i 1659  ]
-[; ;main.c: 401: {
-"401
-{
-[; ;main.c: 402: LATC |= 0b10000000;
-"402
-[e =| _LATC -> -> 128 `i `uc ]
+[; ;main.c: 401: }
+[; ;main.c: 403: wkByte=inMSByteLED;
 "403
+[e = _wkByte _inMSByteLED ]
+[; ;main.c: 404: wkByte &= 0b10000000;
+"404
+[e =& _wkByte -> -> 128 `i `uc ]
+[; ;main.c: 405: if(0<wkByte)
+"405
+[e $ ! < -> 0 `i -> _wkByte `i 1659  ]
+[; ;main.c: 406: {
+"406
+{
+[; ;main.c: 407: LATC |= 0b10000000;
+"407
+[e =| _LATC -> -> 128 `i `uc ]
+"408
 }
-[; ;main.c: 403: }else{
+[; ;main.c: 408: }else{
 [e $U 1660  ]
 [e :U 1659 ]
 {
-[; ;main.c: 404: LATC &= 0b01111111;
-"404
+[; ;main.c: 409: LATC &= 0b01111111;
+"409
 [e =& _LATC -> -> 127 `i `uc ]
-"405
+"410
 }
 [e :U 1660 ]
-[; ;main.c: 405: }
-[; ;main.c: 406: wkByte=inMSByteLED;
-"406
-[e = _wkByte _inMSByteLED ]
-[; ;main.c: 407: wkByte &= 0b01000000;
-"407
-[e =& _wkByte -> -> 64 `i `uc ]
-[; ;main.c: 408: if(0<wkByte)
-"408
-[e $ ! < -> 0 `i -> _wkByte `i 1661  ]
-[; ;main.c: 409: {
-"409
-{
-[; ;main.c: 410: ODCONC &= 0b01111111;
-"410
-[e =& _ODCONC -> -> 127 `i `uc ]
+[; ;main.c: 410: }
+[; ;main.c: 411: wkByte=inMSByteLED;
 "411
+[e = _wkByte _inMSByteLED ]
+[; ;main.c: 412: wkByte &= 0b01000000;
+"412
+[e =& _wkByte -> -> 64 `i `uc ]
+[; ;main.c: 413: if(0<wkByte)
+"413
+[e $ ! < -> 0 `i -> _wkByte `i 1661  ]
+[; ;main.c: 414: {
+"414
+{
+[; ;main.c: 415: ODCONC &= 0b01111111;
+"415
+[e =& _ODCONC -> -> 127 `i `uc ]
+"416
 }
-[; ;main.c: 411: }else{
+[; ;main.c: 416: }else{
 [e $U 1662  ]
 [e :U 1661 ]
 {
-[; ;main.c: 413: ODCONC |= 0b10000000;
-"413
+[; ;main.c: 418: ODCONC |= 0b10000000;
+"418
 [e =| _ODCONC -> -> 128 `i `uc ]
-"414
+"419
 }
 [e :U 1662 ]
-[; ;main.c: 414: }
-[; ;main.c: 415: }
-"415
+[; ;main.c: 419: }
+[; ;main.c: 420: }
+"420
 [e :UE 1630 ]
 }

@@ -17453,13 +17453,18 @@ I2C1_SLAVE_WRITE_COMPLETED,
 I2C1_SLAVE_READ_COMPLETED,
 } I2C1_SLAVE_DRIVER_STATUS;
 
-# 113
+# 91
+extern volatile uint8_t byteFaderValue[8];
+extern volatile uint8_t prevbyteFaderValue[8];
+extern volatile bool bFaderTakeoverFlag[8];
+
+# 119
 void I2C1_Initialize(void);
 
-# 133
+# 139
 void I2C1_ISR ( void );
 
-# 140
+# 146
 extern volatile uint8_t I2C1_slaveWriteData;
 extern volatile int iLEDBytesChangedCount;
 extern volatile uint8_t MSByteLED;
@@ -17574,7 +17579,10 @@ void SYSTEM_Initialize(void);
 # 83
 void OSCILLATOR_Initialize(void);
 
-# 66 "main.c"
+# 69 "main.c"
+volatile uint8_t byteFaderValue[8];
+volatile uint8_t prevbyteFaderValue[8];
+
 typedef uint16_t adc_result_t;
 
 typedef enum
@@ -17629,22 +17637,21 @@ delay(100);
 return;
 }
 
-# 122
+# 128
 void UpdateLEDsFromValue(uint8_t inFaderNum,uint8_t inValue);
 
-# 126
+# 132
 const int cMaxFaderCnt=8;
 
 void UpdateLEDs(uint8_t inMSByteLED,uint8_t inLSByteLED);
 
 void main(void)
 {
-uint8_t I2C_ADDRESS_FADELED0 = 0x10;
+uint8_t I2C_ADDRESS_FADELED0 = 0x68
+;
 adc_result_t rawFaderValue[8];
 int wkInt;
 uint8_t wkFaderValue=0;
-uint8_t byteFaderValue[8];
-uint8_t prevbyteFaderValue[8];
 uint8_t iFaderNum=0;
 
 iLEDBytesChangedCount=0;
@@ -17653,13 +17660,13 @@ SYSTEM_Initialize();
 
 blinkyLoop(5);
 
-# 150
+# 155
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 164
+# 169
 for (iFaderNum=0;iFaderNum<cMaxFaderCnt;iFaderNum++){
 rawFaderValue[iFaderNum]=ADCC_GetSingleConversion(iFaderNum);
 
@@ -17682,7 +17689,7 @@ UpdateLEDsFromValue(iFaderNum,byteFaderValue[iFaderNum]);
 }
 }
 
-# 191
+# 196
 if (1 < iLEDBytesChangedCount)
 {
 iLEDBytesChangedCount=0;
@@ -17755,7 +17762,7 @@ if(wkBrightFlag) {ODCONC &= 0b01111111;}else{ODCONC |= 0b10000000;}
 void UpdateLEDs(uint8_t inMSByteLED,uint8_t inLSByteLED){
 uint8_t wkByte;
 
-# 272
+# 277
 wkByte=inLSByteLED;
 wkByte &= 0b00000010;
 if(0<wkByte)
